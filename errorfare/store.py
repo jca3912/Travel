@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS observations (
     price          REAL    NOT NULL,
     carrier        TEXT,
     stops          INTEGER,
+    stops_detail   TEXT,
     duration       TEXT,
     offer_json     TEXT
 );
@@ -53,6 +54,7 @@ CREATE TABLE IF NOT EXISTS alerts (
     reason         TEXT    NOT NULL,
     carrier        TEXT,
     stops          INTEGER,
+    stops_detail   TEXT,
     observation_id INTEGER REFERENCES observations(id)
 );
 
@@ -112,6 +114,7 @@ class Store:
         carrier: str | None,
         stops: int | None,
         duration: str | None,
+        stops_detail: str | None = None,
         raw: dict[str, Any] | None = None,
         observed_at: str | None = None,
     ) -> int:
@@ -120,8 +123,8 @@ class Store:
             INSERT INTO observations (
                 observed_at, origin, destination, label, departure_date, return_date,
                 trip_nights, travel_class, adults, currency, price, carrier, stops,
-                duration, offer_json
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                stops_detail, duration, offer_json
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """,
             (
                 observed_at or utcnow(),
@@ -137,6 +140,7 @@ class Store:
                 price,
                 carrier,
                 stops,
+                stops_detail,
                 duration,
                 json.dumps(raw, separators=(",", ":")) if raw else None,
             ),
@@ -240,7 +244,7 @@ class Store:
         cols = (
             "created_at,level,origin,destination,label,departure_date,return_date,"
             "travel_class,currency,price,baseline,drop_pct,zscore,sample_size,reason,"
-            "carrier,stops,observation_id"
+            "carrier,stops,stops_detail,observation_id"
         )
         keys = cols.split(",")
         kw.setdefault("created_at", utcnow())

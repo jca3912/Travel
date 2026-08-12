@@ -1,96 +1,84 @@
 # ============================================================
 #  errorfare — configuración
-#  Edita este fichero. No hace falta tocar el código.
+#  Vigilancia: Las Vegas / Los Ángeles → Madrid
 # ============================================================
 
 [general]
-currency     = "EUR"
+currency     = "USD"          # compras desde EE. UU., las tarifas se publican en dólares
 adults       = 1
 travel_class = "ECONOMY"      # ECONOMY | PREMIUM_ECONOMY | BUSINESS | FIRST
-non_stop     = false          # true = solo vuelos directos
+non_stop     = false          # LAS-MAD no tiene vuelo directo; se filtra por max_stops
 environment  = "test"         # "test" (datos limitados) | "production" (datos reales)
 
 # Cuota gratuita de Amadeus: 2.000 llamadas/mes ≈ 66/día.
-# Cada combinación ruta × fecha de salida = 1 llamada.
-max_api_calls_per_run = 55
+max_api_calls_per_run = 60
 
 
 [search]
 # Ventana de búsqueda: desde hoy+min a hoy+max
 min_days_ahead = 21
-max_days_ahead = 300
+max_days_ahead = 330
 
-# Cuántas fechas de salida se muestrean por ruta en cada ejecución.
-# Llamadas por ejecución ≈ nº de rutas × samples_per_route
-samples_per_route = 3
+# Con sólo 2 rutas sobra cuota, así que barremos muchas fechas.
+# 2 rutas × 16 fechas = 32 llamadas/día ≈ 960/mes.
+samples_per_route = 16
 
-# Duraciones de viaje en noches. Cada ejecución rota a la siguiente,
-# así con los días vas cubriendo todas sin gastar cuota de golpe.
-trip_lengths = [7, 10, 14]
+# Duraciones de viaje en noches. Cada día rota a la siguiente.
+trip_lengths = [7, 10, 14, 21]
 
-# Desplaza las salidas al viernes más cercano (los chollos suelen
-# aparecer en fechas concretas, pero tú viajas en finde).
-prefer_weekend = true
+# Desactivado: con 16 muestras interesa más repartir fechas por toda la
+# ventana que concentrarlas en viernes. Los errores de tarifa no eligen día.
+prefer_weekend = false
 
-# Sólo ida (sin vuelta). Gasta la mitad de cuota pero los error fares
-# de larga distancia casi siempre son de ida y vuelta.
 one_way = false
 
 
-[detection]
-# Nº mínimo de precios históricos para fiarse de la estadística.
-# Por debajo de esto sólo se usa el umbral fijo `alert_below` de cada ruta.
-min_observations = 8
+# --- Escalas -------------------------------------------------
+# Se cuentan POR TRAYECTO: "1" significa como mucho una escala de ida
+# y una de vuelta, no una en todo el viaje.
 
-# Detección robusta: z = 0.6745 · (mediana − precio) / MAD
+max_stops = 2                 # más de esto se descarta directamente
+preferred_max_stops = 1       # lo que quieres de verdad
+
+# Cuánto más barato tiene que ser un itinerario de 2 escalas para que se
+# prefiera a uno de 1. Con 15, una segunda escala sólo gana si ahorra más
+# del 15 %; si no, se queda el de una escala aunque sea algo más caro.
+stop_penalty_pct = 15
+
+# Ofertas que se piden por búsqueda. Hacen falta bastantes porque el filtro
+# de escalas lo aplicamos nosotros. No consume cuota extra.
+offers_per_search = 20
+
+
+[detection]
+min_observations = 8
 mad_z_alert = 3.0             # → CHOLLO
 mad_z_error = 5.0             # → POSIBLE ERROR
-
-# Detección por caída porcentual sobre la mediana histórica
 drop_pct_alert = 0.35         # −35 % → CHOLLO
 drop_pct_error = 0.60         # −60 % → POSIBLE ERROR
-
-# No repetir la misma alerta (misma ruta+fechas) antes de N horas
 cooldown_hours = 20
-
-# Ventana de histórico que se considera "vigente", en días
 history_window_days = 120
 
 
 # ============================================================
 #  RUTAS
-#  origin/destination = código IATA de aeropuerto o ciudad
-#  alert_below        = € por persona (ida y vuelta) que ya te
-#                       parece un chollo. Funciona desde el día 1,
-#                       sin esperar a que se calibre el histórico.
+#  Mismo destino, dos orígenes. `alert_below` es el precio de
+#  ida y vuelta por persona que ya te parece un chollo; a la
+#  mitad de esa cifra se marca como POSIBLE ERROR.
 # ============================================================
 
+# Origen principal: sales de casa.
 [[routes]]
-origin      = "MAD"
-destination = "NRT"
-label       = "Tokio"
-alert_below = 450
-
-[[routes]]
-origin      = "MAD"
-destination = "JFK"
-label       = "Nueva York"
-alert_below = 300
-
-[[routes]]
-origin      = "MAD"
-destination = "BKK"
-label       = "Bangkok"
-alert_below = 420
-
-[[routes]]
-origin      = "MAD"
-destination = "EZE"
-label       = "Buenos Aires"
-alert_below = 500
-
-[[routes]]
-origin      = "MAD"
-destination = "DPS"
-label       = "Bali"
+origin      = "LAS"
+destination = "MAD"
+label       = "Las Vegas"
 alert_below = 550
+
+# Origen alternativo: sólo compensa si es bastante más barato, porque
+# primero tienes que plantarte en Los Ángeles. Por eso el umbral es más
+# exigente que el de Las Vegas, no igual.
+[[routes]]
+origin      = "LAX"
+destination = "MAD"
+label       = "Los Ángeles"
+alert_below = 450

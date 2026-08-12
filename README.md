@@ -1,7 +1,7 @@
 # errorfare
 
-Vigila los precios de tus rutas favoritas, guarda un histórico y avisa cuando
-un precio se sale de lo normal. Genera un informe HTML diario.
+Vigila **Las Vegas → Madrid** y **Los Ángeles → Madrid**, guarda un histórico y
+avisa cuando un precio se sale de lo normal. Genera un informe HTML diario.
 
 Sin dependencias: sólo la biblioteca estándar de Python 3.11+.
 
@@ -39,15 +39,30 @@ Todo se toca en `config.toml`. Lo importante:
 
 | Ajuste | Qué hace |
 |---|---|
-| `[[routes]]` | Un bloque por destino. `alert_below` es el precio que ya te parece chollo. |
+| `[[routes]]` | Un bloque por origen. `alert_below` es el precio que ya te parece chollo. |
 | `samples_per_route` | Fechas de salida que se prueban por ruta y pasada. Llamadas ≈ rutas × esto. |
 | `trip_lengths` | Duraciones en noches. Cada día rota a la siguiente. |
+| `max_stops` | Escalas máximas **por trayecto**. Lo que pase de ahí se descarta. |
+| `preferred_max_stops` | Las que quieres de verdad. Ver abajo. |
+| `stop_penalty_pct` | Cuánto más barato tiene que ser un itinerario con escalas de más. |
 | `max_api_calls_per_run` | Freno de mano para no fundir la cuota. |
 | `min_observations` | Precios necesarios antes de fiarse de la estadística. |
 
-**Cuidado con la cuota**: 2.000 llamadas/mes gratis ≈ 66/día. Con 5 rutas × 3
-fechas gastas 15 al día (450/mes), que deja margen de sobra. Comprueba siempre
-la proyección antes de subir nada:
+### Escalas
+
+Se cuentan **por trayecto**: `max_stops = 2` significa como mucho dos escalas de
+ida y dos de vuelta, no dos en todo el viaje. En el informe verás `1+2`, que es
+una escala a la ida y dos a la vuelta.
+
+La preferencia no es un filtro duro. Un itinerario que se pasa de
+`preferred_max_stops` compite penalizado un `stop_penalty_pct`, así que una
+segunda escala sólo se elige cuando ahorra de verdad. Con los valores actuales,
+un vuelo de 2 escalas tiene que ser más de un 15 % más barato para ganarle a uno
+de 1 escala.
+
+**Cuidado con la cuota**: 2.000 llamadas/mes gratis ≈ 66/día. Con 2 rutas × 16
+fechas gastas 32 al día (960/mes), que deja margen para añadir una segunda
+pasada diaria. Comprueba siempre la proyección antes de subir nada:
 
 ```bash
 python run.py scan --dry-run
@@ -82,6 +97,10 @@ Dos mecanismos en paralelo. Basta con que salte uno.
 
 **Umbral fijo.** Si el precio baja de `alert_below`, es un CHOLLO. Si baja de la
 mitad, es un POSIBLE ERROR. Funciona desde el primer día.
+
+El umbral de Los Ángeles (450 $) es más exigente que el de Las Vegas (550 $) a
+propósito: una oferta desde LAX sólo compensa si es bastante más barata, porque
+primero hay que plantarse en Los Ángeles.
 
 **Estadística robusta.** Se compara contra el histórico de esa ruta, preferiendo
 los vuelos que salen el mismo mes (agosto no vale lo mismo que febrero). Se usa

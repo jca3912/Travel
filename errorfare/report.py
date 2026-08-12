@@ -248,14 +248,22 @@ def _sparkline(prices: list[float], width: int = 130, height: int = 28) -> str:
     )
 
 
+def _escalas(stops: int | None, detail: str | None) -> str:
+    """'1+2' significa una escala a la ida y dos a la vuelta."""
+    if not stops:
+        return "sin escalas"
+    if detail and "+" in detail:
+        return f"escalas {_esc(detail)} (ida+vuelta)"
+    return f"{stops} escala" + ("s" if stops > 1 else "")
+
+
 def _alert_card(row: dict, currency_default: str) -> str:
     level = row["level"]
     cls = "error" if level == "error" else "chollo"
     badge = "Posible error de tarifa" if level == "error" else "Chollo"
     cur = row["currency"] or currency_default
 
-    stops = row["stops"]
-    escalas = "directo" if stops == 0 else f"{stops} escala{'s' if (stops or 0) > 1 else ''}"
+    escalas = _escalas(row["stops"], row["stops_detail"])
     vuelta = (
         f'<span class="sep">·</span>vuelta <time>{_fmt_date(row["return_date"])}</time>'
         if row["return_date"]

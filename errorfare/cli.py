@@ -141,9 +141,10 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                         adults=cfg.adults,
                         currency=cfg.currency,
                         price=price,
-                        carrier=rng.choice(["IB", "AF", "KL", "LH", "TK", "QR"]),
-                        stops=rng.choice([0, 1, 1, 2]),
-                        duration=f"{rng.randint(9, 22)}h {rng.randint(0, 55)}m",
+                        carrier=rng.choice(["IB", "AF", "KL", "LH", "UA", "AA"]),
+                        stops=(s := rng.choice([1, 1, 1, 2])),
+                        stops_detail=f"{s}+{rng.choice([1, 1, s])}",
+                        duration=f"{rng.randint(14, 28)}h {rng.randint(0, 55)}m",
                         observed_at=observed.isoformat(timespec="seconds"),
                     )
                     inserted += 1
@@ -178,7 +179,8 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                     price=price,
                     carrier="XX",
                     stops=1,
-                    duration="14h 20m",
+                    stops_detail="1+1",
+                    duration="19h 40m",
                 )
                 if verdict.is_alert:
                     store.record_alert(
@@ -198,6 +200,7 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                         reason=verdict.reason,
                         carrier="XX",
                         stops=1,
+                        stops_detail="1+1",
                         observation_id=obs_id,
                     )
                     tag = "POSIBLE ERROR" if verdict.level == "error" else "CHOLLO"

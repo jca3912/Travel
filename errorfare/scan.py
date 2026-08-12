@@ -24,6 +24,26 @@ class ScanResult:
     error: str | None = None
 
 
+def pick_offer(cfg: Config, offers: list[Offer]) -> tuple[Offer | None, int]:
+    """Elige la oferta a guardar aplicando la preferencia de escalas.
+
+    Se descarta lo que pase de `max_stops` por trayecto. Entre lo que queda, un
+    itinerario con más escalas de las preferidas tiene que ser un `stop_penalty_pct`
+    más barato para ganarle a uno con menos: así una segunda escala sólo se elige
+    cuando compensa de verdad, no por tres euros.
+    """
+    eligible = [o for o in offers if o.stops <= cfg.max_stops]
+    if not eligible:
+        return None, len(offers)
+
+    penalty = 1 + cfg.stop_penalty_pct / 100
+
+    def effective(offer: Offer) -> float:
+        return offer.price * penalty if offer.stops > cfg.preferred_max_stops else offer.price
+
+    return min(eligible, key=effective), len(offers) - len(eligible)
+
+
 def rotation_for(today: date) -> int:
     """Índice que cambia cada día: reparte la cobertura de fechas entre pasadas."""
     return today.toordinal()
@@ -115,7 +135,17 @@ def scan(
                 )
                 continue
 
-            cheapest = min(offers, key=lambda o: o.price)
+            cheapest, descartadas = pick_offer(cfg, offers)
+            if cheapest is None:
+                if verbose:
+                    print(
+                        f"  · {route.label:<14} {departure} → "
+                        f"{descartadas} ofertas, todas con más de {cfg.max_stops} escalas"
+                    )
+                results.append(
+                    ScanResult(route, departure, ret, None, None, "sin ofertas elegibles")
+                )
+                continue
             stats["offers"] += 1
 
             # Evaluamos ANTES de insertar, para que la observación nueva no
@@ -135,6 +165,7 @@ def scan(
                 price=cheapest.price,
                 carrier=cheapest.carrier,
                 stops=cheapest.stops,
+                stops_detail=cheapest.stops_detail,
                 duration=cheapest.duration,
                 raw=cheapest.raw,
             )
@@ -167,6 +198,7 @@ def scan(
                         reason=verdict.reason,
                         carrier=cheapest.carrier,
                         stops=cheapest.stops,
+                        stops_detail=cheapest.stops_detail,
                         observation_id=obs_id,
                     )
                     stats["alerts"] += 1
@@ -179,7 +211,8 @@ def scan(
             elif verbose:
                 print(
                     f"  · {route.label:<14} {departure} → "
-                    f"{cheapest.price:>7.0f} {cheapest.currency}  ({verdict.reason})"
+                    f"{cheapest.price:>7.0f} {cheapest.currency} "
+                    f"[{cheapest.stops_detail} esc.] ({verdict.reason})"
                 )
 
             results.append(ScanResult(route, departure, ret, cheapest, verdict))

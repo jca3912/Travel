@@ -46,6 +46,10 @@ class Config:
     trip_lengths: list[int] = field(default_factory=lambda: [7, 10, 14])
     prefer_weekend: bool = True
     one_way: bool = False
+    max_stops: int = 2
+    preferred_max_stops: int = 1
+    stop_penalty_pct: float = 15.0
+    offers_per_search: int = 20
 
     min_observations: int = 8
     mad_z_alert: float = 3.0
@@ -132,6 +136,10 @@ def load(config_path: Path | None = None) -> Config:
         trip_lengths=[int(x) for x in search.get("trip_lengths", [7, 10, 14])],
         prefer_weekend=bool(search.get("prefer_weekend", True)),
         one_way=bool(search.get("one_way", False)),
+        max_stops=int(search.get("max_stops", 2)),
+        preferred_max_stops=int(search.get("preferred_max_stops", 1)),
+        stop_penalty_pct=float(search.get("stop_penalty_pct", 15.0)),
+        offers_per_search=int(search.get("offers_per_search", 20)),
         min_observations=int(detection.get("min_observations", 8)),
         mad_z_alert=float(detection.get("mad_z_alert", 3.0)),
         mad_z_error=float(detection.get("mad_z_error", 5.0)),
@@ -164,6 +172,17 @@ def _validate(cfg: Config) -> None:
         problems.append("samples_per_route debe ser >= 1")
     if not cfg.trip_lengths:
         problems.append("trip_lengths no puede estar vacío")
+    if cfg.preferred_max_stops > cfg.max_stops:
+        problems.append("preferred_max_stops no puede ser mayor que max_stops")
+    if cfg.max_stops < 0:
+        problems.append("max_stops no puede ser negativo")
+    if cfg.non_stop and cfg.max_stops > 0:
+        problems.append(
+            "non_stop = true contradice max_stops > 0: elige una de las dos formas "
+            "de limitar escalas"
+        )
+    if not 1 <= cfg.offers_per_search <= 250:
+        problems.append("offers_per_search debe estar entre 1 y 250")
     if cfg.mad_z_error < cfg.mad_z_alert:
         problems.append("mad_z_error debería ser mayor que mad_z_alert")
     if cfg.drop_pct_error < cfg.drop_pct_alert:

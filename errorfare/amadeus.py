@@ -32,7 +32,8 @@ class Offer:
     price: float
     currency: str
     carrier: str
-    stops: int
+    stops: int          # escalas del trayecto peor: 1 significa "1 como mucho, en cada sentido"
+    stops_detail: str   # desglose por trayecto, p.ej. "1+2" = 1 a la ida, 2 a la vuelta
     duration: str
     departure_date: str
     return_date: str | None
@@ -183,8 +184,11 @@ class AmadeusClient:
         departure: date,
         return_date: date | None,
         *,
-        max_results: int = 5,
+        max_results: int | None = None,
     ) -> list[Offer]:
+        # Pedimos bastantes ofertas porque el filtrado por escalas es nuestro:
+        # el endpoint GET no acepta un límite de conexiones, así que hay que
+        # traerse el abanico y quedarse con lo que cumple.
         params: dict[str, Any] = {
             "originLocationCode": origin,
             "destinationLocationCode": destination,
@@ -192,7 +196,7 @@ class AmadeusClient:
             "adults": self.cfg.adults,
             "currencyCode": self.cfg.currency,
             "travelClass": self.cfg.travel_class,
-            "max": max_results,
+            "max": max_results or self.cfg.offers_per_search,
         }
         if return_date is not None:
             params["returnDate"] = return_date.isoformat()
@@ -216,8 +220,11 @@ def _parse_offer(item: dict[str, Any], departure: date, ret: date | None) -> Off
         currency = price_block.get("currency", "EUR")
         itineraries = item.get("itineraries", [])
         segments = [s for it in itineraries for s in it.get("segments", [])]
-        # "Escalas" = segmentos totales menos un tramo por trayecto
-        stops = max(len(segments) - len(itineraries), 0)
+        # Escalas POR TRAYECTO. Un ida y vuelta con una escala en cada sentido
+        # son 2 segmentos por itinerario, no "2 escalas" del viaje.
+        per_leg = [max(len(it.get("segments", [])) - 1, 0) for it in itineraries]
+        stops = max(per_leg) if per_leg else 0
+        stops_detail = "+".join(str(s) for s in per_leg) if per_leg else "?"
         carriers = item.get("validatingAirlineCodes") or [
             segments[0].get("carrierCode", "??") if segments else "??"
         ]
@@ -230,6 +237,7 @@ def _parse_offer(item: dict[str, Any], departure: date, ret: date | None) -> Off
         currency=currency,
         carrier=carriers[0],
         stops=stops,
+        stops_detail=stops_detail,
         duration=duration,
         departure_date=departure.isoformat(),
         return_date=ret.isoformat() if ret else None,
