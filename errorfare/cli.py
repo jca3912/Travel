@@ -12,7 +12,7 @@ from pathlib import Path
 from . import config as config_mod
 from . import report as report_mod
 from .config import REPORTS_DIR, Config
-from .detect import evaluate
+from .detect import evaluate, nombre_cabina
 from . import providers
 from .providers import ProviderError
 from .scan import sample_departures, rotation_for, scan, trip_nights_for
@@ -32,7 +32,8 @@ def cmd_scan(cfg: Config, args: argparse.Namespace) -> int:
         print(f"Duración del viaje: {nights} noches" if nights else "Sólo ida")
         print(f"Fechas de salida: {', '.join(d.isoformat() for d in departures)}")
         print(f"Rutas: {', '.join(r.key for r in cfg.routes)}")
-        total = len(cfg.routes) * len(departures)
+        print(f"Cabinas: {', '.join(nombre_cabina(c) for c in cfg.cabins)}")
+        total = len(cfg.routes) * len(departures) * len(cfg.cabins)
         print(f"\nBúsquedas que gastaría: {total} (presupuesto {cfg.max_api_calls_per_run})")
         print(f"Proyección mensual: {total * 30}")
         if cfg.provider == "serpapi" and total * 30 > 1000:
@@ -109,17 +110,26 @@ def cmd_status(cfg: Config, args: argparse.Namespace) -> int:
         if not summaries:
             print("Sin observaciones todavía.")
             return 0
-        print(f"{'Destino':<16}{'Ruta':<10}{'Obs':>5}{'Mín':>9}{'Máx':>9}  Base")
+        print(f"{'Origen':<14}{'Ruta':<9}{'Cabina':<17}{'Obs':>5}{'Mín':>9}{'Máx':>9}  Base")
         for s in summaries:
-            ready = "ok" if s["n"] >= cfg.min_observations else f"faltan {cfg.min_observations - s['n']}"
+            ready = (
+                "ok"
+                if s["n"] >= cfg.min_observations
+                else f"faltan {cfg.min_observations - s['n']}"
+            )
             print(
-                f"{s['label'][:15]:<16}{s['origin']}-{s['destination']:<6}"
+                f"{s['label'][:13]:<14}{s['origin']}-{s['destination']:<5}"
+                f"{nombre_cabina(s['travel_class']):<17}"
                 f"{s['n']:>5}{s['min_price']:>9.0f}{s['max_price']:>9.0f}  {ready}"
             )
     return 0
 
 
 # ----------------------------------------------------------------- simulate
+
+
+#: Precio típico de cada cabina como múltiplo de su umbral configurado
+FACTOR_BASE = {"ECONOMY": 1.65, "PREMIUM_ECONOMY": 1.5, "BUSINESS": 1.6, "FIRST": 1.6}
 
 
 def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
@@ -130,98 +140,121 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
 
     with Store(cfg.db_path) as store:
         for route in cfg.routes:
-            base = (route.alert_below or 400) * 1.65
-            for day_offset in range(args.days, 0, -1):
-                observed = datetime.now(timezone.utc) - timedelta(days=day_offset)
-                for _ in range(args.per_day):
-                    departure = today + timedelta(
-                        days=rng.randint(cfg.min_days_ahead, cfg.max_days_ahead)
-                    )
-                    # Estacionalidad suave + ruido multiplicativo
-                    season = 1 + 0.18 * ((departure.month % 12) / 12 - 0.5) * 2
-                    price = round(base * season * rng.lognormvariate(0, 0.11), 2)
-                    store.record_observation(
-                        origin=route.origin,
-                        destination=route.destination,
-                        label=route.label,
-                        departure_date=departure.isoformat(),
-                        return_date=(departure + timedelta(days=10)).isoformat(),
-                        trip_nights=10,
-                        travel_class=cfg.travel_class,
-                        adults=cfg.adults,
-                        currency=cfg.currency,
-                        price=price,
-                        carrier=rng.choice(["IB", "AF", "KL", "LH", "UA", "AA"]),
-                        stops=(s := rng.choice([1, 1, 1, 2])),
-                        route_path="-".join(
-                            [route.origin]
-                            + rng.sample(["IAD", "ATL", "DFW", "JFK", "ORD", "MIA"], s)
-                            + [route.destination]
-                        ),
-                        duration=f"{rng.randint(14, 28)}h {rng.randint(0, 55)}m",
-                        observed_at=observed.isoformat(timespec="seconds"),
-                    )
-                    inserted += 1
+            for cabin in cfg.cabins:
+                umbral = route.threshold(cabin) or 400
+                base = umbral * FACTOR_BASE.get(cabin, 1.6)
+                for day_offset in range(args.days, 0, -1):
+                    observed = datetime.now(timezone.utc) - timedelta(days=day_offset)
+                    for _ in range(args.per_day):
+                        departure = today + timedelta(
+                            days=rng.randint(cfg.min_days_ahead, cfg.max_days_ahead)
+                        )
+                        # Estacionalidad suave + ruido multiplicativo
+                        season = 1 + 0.18 * ((departure.month % 12) / 12 - 0.5) * 2
+                        price = round(base * season * rng.lognormvariate(0, 0.11), 2)
+                        s = rng.choice([1, 1, 1, 2])
+                        store.record_observation(
+                            origin=route.origin,
+                            destination=route.destination,
+                            label=route.label,
+                            departure_date=departure.isoformat(),
+                            return_date=(departure + timedelta(days=10)).isoformat(),
+                            trip_nights=10,
+                            travel_class=cabin,
+                            adults=cfg.adults,
+                            currency=cfg.currency,
+                            price=price,
+                            carrier=rng.choice(["IB", "AF", "KL", "LH", "UA", "AA"]),
+                            stops=s,
+                            route_path="-".join(
+                                [route.origin]
+                                + rng.sample(["IAD", "ATL", "DFW", "JFK", "ORD", "MIA"], s)
+                                + [route.destination]
+                            ),
+                            duration=f"{rng.randint(14, 28)}h {rng.randint(0, 55)}m",
+                            observed_at=observed.isoformat(timespec="seconds"),
+                        )
+                        inserted += 1
 
-        print(f"{inserted} observaciones sintéticas insertadas.")
+        print(f"{inserted} observaciones sintéticas insertadas "
+              f"({len(cfg.routes)} rutas × {len(cfg.cabins)} cabinas).")
 
         if args.inject:
             print("\nInyectando gangas para probar la detección:")
             for route in cfg.routes[: args.inject]:
-                departure = today + timedelta(days=rng.randint(60, 200))
-                history = store.history_prices(
-                    route.origin,
-                    route.destination,
-                    cfg.travel_class,
-                    window_days=cfg.history_window_days,
-                )
-                import statistics
-
-                median = statistics.median(history) if history else 400
-                price = round(median * rng.uniform(0.18, 0.32), 2)
-                verdict = evaluate(cfg, store, route, price, departure.isoformat())
-                obs_id = store.record_observation(
-                    origin=route.origin,
-                    destination=route.destination,
-                    label=route.label,
-                    departure_date=departure.isoformat(),
-                    return_date=(departure + timedelta(days=10)).isoformat(),
-                    trip_nights=10,
-                    travel_class=cfg.travel_class,
-                    adults=cfg.adults,
-                    currency=cfg.currency,
-                    price=price,
-                    carrier="Prueba",
-                    stops=1,
-                    route_path=f"{route.origin}-JFK-{route.destination}",
-                    duration="19h 40m",
-                )
-                if verdict.is_alert:
-                    store.record_alert(
-                        level=verdict.level,
-                        origin=route.origin,
-                        destination=route.destination,
-                        label=route.label,
-                        departure_date=departure.isoformat(),
-                        return_date=(departure + timedelta(days=10)).isoformat(),
-                        travel_class=cfg.travel_class,
-                        currency=cfg.currency,
-                        price=price,
-                        baseline=verdict.baseline,
-                        drop_pct=verdict.drop_pct,
-                        zscore=verdict.zscore,
-                        sample_size=verdict.sample_size,
-                        reason=verdict.reason,
-                        carrier="Prueba",
-                        stops=1,
-                        route_path=f"{route.origin}-JFK-{route.destination}",
-                        observation_id=obs_id,
-                    )
-                    tag = "POSIBLE ERROR" if verdict.level == "error" else "CHOLLO"
-                    print(f"  [{tag}] {route.label}: {price:.0f} {cfg.currency} — {verdict.reason}")
-                else:
-                    print(f"  [nada] {route.label}: {price:.0f} — {verdict.reason}")
+                for cabin in cfg.cabins:
+                    _inyectar(cfg, store, route, cabin, rng, today)
     return 0
+
+
+def _inyectar(cfg: Config, store: Store, route, cabin: str, rng, today: date) -> None:
+    """Mete un precio anómalo y comprueba que el motor lo caza."""
+    import statistics
+
+    departure = today + timedelta(days=rng.randint(60, 200))
+    ret = departure + timedelta(days=10)
+    history = store.history_prices(
+        route.origin, route.destination, cabin, window_days=cfg.history_window_days
+    )
+    median = statistics.median(history) if history else 400
+
+    if cabin == "ECONOMY":
+        price = round(median * rng.uniform(0.18, 0.32), 2)
+    else:
+        # Para cabinas superiores probamos el caso interesante: una business
+        # publicada a precio de turista, que es como se ven los errores reales.
+        eco = store.history_prices(
+            route.origin, route.destination, "ECONOMY",
+            window_days=cfg.history_window_days,
+        )
+        eco_median = statistics.median(eco) if eco else median * 0.35
+        price = round(eco_median * rng.uniform(0.9, 1.2), 2)
+
+    verdict = evaluate(cfg, store, route, price, departure.isoformat(), cabin)
+    via = f"{route.origin}-JFK-{route.destination}"
+    obs_id = store.record_observation(
+        origin=route.origin,
+        destination=route.destination,
+        label=route.label,
+        departure_date=departure.isoformat(),
+        return_date=ret.isoformat(),
+        trip_nights=10,
+        travel_class=cabin,
+        adults=cfg.adults,
+        currency=cfg.currency,
+        price=price,
+        carrier="Prueba",
+        stops=1,
+        route_path=via,
+        duration="19h 40m",
+    )
+    etiqueta = f"{route.label} {nombre_cabina(cabin)}"
+    if not verdict.is_alert:
+        print(f"  [nada]          {etiqueta}: {price:.0f} — {verdict.reason}")
+        return
+
+    store.record_alert(
+        level=verdict.level,
+        origin=route.origin,
+        destination=route.destination,
+        label=route.label,
+        departure_date=departure.isoformat(),
+        return_date=ret.isoformat(),
+        travel_class=cabin,
+        currency=cfg.currency,
+        price=price,
+        baseline=verdict.baseline,
+        drop_pct=verdict.drop_pct,
+        zscore=verdict.zscore,
+        sample_size=verdict.sample_size,
+        reason=verdict.reason,
+        carrier="Prueba",
+        stops=1,
+        route_path=via,
+        observation_id=obs_id,
+    )
+    tag = "POSIBLE ERROR" if verdict.level == "error" else "CHOLLO      "
+    print(f"  [{tag}] {etiqueta}: {price:.0f} {cfg.currency} — {verdict.reason}")
 
 
 def cmd_reset(cfg: Config, args: argparse.Namespace) -> int:

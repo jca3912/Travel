@@ -57,6 +57,7 @@ class SerpApiProvider(FlightProvider):
         destination: str,
         departure: date,
         return_date: date | None,
+        cabin: str,
     ) -> list[Offer]:
         if self.calls_made >= self.cfg.max_api_calls_per_run:
             raise QuotaExhausted(
@@ -70,7 +71,7 @@ class SerpApiProvider(FlightProvider):
             "arrival_id": destination,
             "outbound_date": departure.isoformat(),
             "currency": self.cfg.currency,
-            "travel_class": TRAVEL_CLASS[self.cfg.travel_class],
+            "travel_class": TRAVEL_CLASS[cabin],
             "adults": self.cfg.adults,
             "stops": STOPS_PARAM.get(self.cfg.max_stops, 0),
             "type": 1 if return_date else 2,

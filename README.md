@@ -61,7 +61,8 @@ Todo se toca en `config.toml`.
 | Ajuste | Qué hace |
 |---|---|
 | `provider` | Fuente de precios: `gflights` o `serpapi`. |
-| `[[routes]]` | Un bloque por origen. `alert_below` es el precio que ya te parece chollo. |
+| `cabins` | Cabinas a vigilar. Cada una multiplica las búsquedas. |
+| `[[routes]]` | Un bloque por origen, con un `alert_below` por cabina. |
 | `samples_per_route` | Fechas de salida que se prueban por ruta y pasada. |
 | `trip_lengths` | Duraciones en noches. Cada día rota a la siguiente. |
 | `max_stops` | Escalas máximas **por trayecto**. |
@@ -85,11 +86,27 @@ segunda escala sólo se elige cuando ahorra de verdad. Con los valores actuales,
 un vuelo de 2 escalas tiene que ser más de un 15 % más barato para ganarle a uno
 de 1 escala.
 
+### Cabinas
+
+Cada cabina se busca por separado y mantiene **su propio histórico**. Es
+necesario: 900 $ es un martes cualquiera en turista y un error de tarifa en
+business, así que una mediana conjunta no describiría ninguna de las dos.
+
+Los umbrales fijos van por cabina:
+
+```toml
+[routes.alert_below]
+ECONOMY         = 550
+PREMIUM_ECONOMY = 950
+BUSINESS        = 1900
+```
+
 ### Consumo
 
-Con 2 rutas × 16 fechas son 32 búsquedas al día, ~960 al mes. Con `gflights` da
-igual; con `serpapi` roza el límite de 1.000, así que baja a 14 fechas.
-Comprueba la proyección antes de subir nada:
+Con 2 rutas × 12 fechas × 3 cabinas son 72 búsquedas al día, ~2.160 al mes. Con
+`gflights` es gratis. Con `serpapi` no cabe ni de lejos en el plan de 1.000, así
+que habría que recortar cabinas o fechas. Comprueba la proyección antes de subir
+nada:
 
 ```bash
 .venv\Scripts\python.exe run.py scan --dry-run
@@ -127,12 +144,21 @@ Y los tests de la lógica que no toca la red:
 
 Dos mecanismos en paralelo. Basta con que salte uno.
 
-**Umbral fijo.** Si el precio baja de `alert_below`, es un CHOLLO. Si baja de la
-mitad, es un POSIBLE ERROR. Funciona desde el primer día.
+**Umbral fijo.** Si el precio baja del `alert_below` de esa cabina, es un
+CHOLLO. Si baja de la mitad, es un POSIBLE ERROR. Funciona desde el primer día.
 
-El umbral de Los Ángeles (450 $) es más exigente que el de Las Vegas (550 $) a
-propósito: una oferta desde LAX sólo compensa si es bastante más barata, porque
-primero hay que plantarse en Los Ángeles.
+Los umbrales de Los Ángeles son más exigentes que los de Las Vegas a propósito:
+una oferta desde LAX sólo compensa si es bastante más barata, porque primero hay
+que plantarse en Los Ángeles.
+
+**Comparación entre cabinas.** Una business que cuesta menos de
+`cross_cabin_ratio` veces la mediana de turista se marca como POSIBLE ERROR
+directamente. Es la firma de los errores de tarifa más sonados: la cabina buena
+publicada al precio de la mala. Tiene una ventaja importante — no espera a que
+haya histórico de business, que es justo el que más tarda en acumularse.
+
+Con turista en torno a 800 $ y ratio 1,3, cualquier business por debajo de
+~1.040 $ salta como error. Lo normal en esa cabina son 4.800 $.
 
 **Estadística robusta.** Se compara contra el histórico de esa ruta, prefiriendo
 los vuelos que salen el mismo mes (agosto no vale lo mismo que febrero). Se usa
@@ -144,26 +170,34 @@ media, pero no mueve la mediana.
 z = 0.6745 × (mediana − precio) / MAD
 ```
 
-- `z ≥ 3` o caída ≥ 35 % → CHOLLO
-- `z ≥ 5` o caída ≥ 60 % → POSIBLE ERROR
+- `z ≥ 3` **y** caída ≥ 15 %, o caída ≥ 35 % → CHOLLO
+- `z ≥ 5` **y** caída ≥ 40 %, o caída ≥ 60 % → POSIBLE ERROR
+
+El z-score dice si el precio es *raro*; la caída porcentual, si *merece la pena*.
+Hacen falta las dos, y esto no es teórico: con el histórico de business, que es
+muy estable, una bajada del 20 % daba z=8 y se marcaba como error de tarifa. Lo
+detectaron los tests.
 
 Necesita `min_observations` precios (8 por defecto) para activarse. Si el
 histórico es degenerado (todos los precios casi idénticos) el MAD se ignora y se
-decide sólo por caída porcentual, porque si no cualquier variación dispararía un
-z-score absurdo.
+decide sólo por caída porcentual.
 
 Una alerta repetida para la misma ruta y fechas se silencia durante
 `cooldown_hours`.
 
 ### Referencia real
 
-Primera pasada del 12/08/2026, precios de ida y vuelta en economy con 1 escala:
+Precios observados el 12/08/2026, ida y vuelta por persona:
 
-- **LAS → MAD**: entre 740 $ y 1.400 $, lo normal en torno a 800 $
-- **LAX → MAD**: entre 716 $ y 1.203 $, lo normal en torno a 810 $
+| Ruta | Turista | Premium | Business |
+|---|---|---|---|
+| LAS → MAD | 740 – 1.400 $ | 1.230 – 2.087 $ | 3.950 – 6.383 $ |
+| LAX → MAD | 671 – 1.266 $ | 1.130 – 2.270 $ | 3.366 – 5.273 $ |
 
-O sea que los umbrales de 550 $ y 450 $ representan caídas del 30-45 % sobre lo
-habitual. Son chollos de verdad, no ruido.
+Casi todo con una escala: Londres, Lisboa, Copenhague, Washington, Miami.
+
+Los umbrales configurados quedan muy por debajo de lo habitual, que es lo que se
+busca: sólo saltan ante algo genuinamente anómalo, no ante una semana barata.
 
 ---
 

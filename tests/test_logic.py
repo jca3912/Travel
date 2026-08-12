@@ -152,6 +152,64 @@ check("la duración del viaje rota",
       == len(cfg.trip_lengths))
 
 
+# ------------------------------------------------- detección entre cabinas
+
+print("\nDetección")
+
+import tempfile  # noqa: E402
+from errorfare.detect import evaluate  # noqa: E402
+from errorfare.store import Store  # noqa: E402
+
+tmp = Path(tempfile.mkdtemp()) / "test.db"
+store = Store(tmp)
+ruta = cfg.routes[0]
+MES = "2027-03"
+
+
+def sembrar(cabin: str, precios: list[float]) -> None:
+    for p in precios:
+        store.record_observation(
+            origin=ruta.origin, destination=ruta.destination, label=ruta.label,
+            departure_date=f"{MES}-15", return_date=f"{MES}-25", trip_nights=10,
+            travel_class=cabin, adults=1, currency="USD", price=p,
+            carrier="IB", stops=1, route_path="LAS-JFK-MAD", duration="18h",
+        )
+
+
+# Turista alrededor de 800, business alrededor de 4.000: lo normal en esta ruta
+sembrar("ECONOMY", [780, 800, 820, 760, 840, 790, 810, 830, 795, 805])
+sembrar("BUSINESS", [3900, 4100, 4000, 3800, 4200, 3950, 4050, 4150, 3850, 4000])
+
+v = evaluate(cfg, store, ruta, 800, f"{MES}-15", "ECONOMY")
+check("turista a precio normal no alerta", v.level is None, str(v.level))
+
+v = evaluate(cfg, store, ruta, 3900, f"{MES}-15", "BUSINESS")
+check("business a precio normal no alerta", v.level is None, str(v.level))
+
+v = evaluate(cfg, store, ruta, 900, f"{MES}-15", "BUSINESS")
+check("business a precio de turista es ERROR", v.level == "error", str(v.level))
+check("y lo explica en el motivo", "turista" in v.reason, v.reason)
+
+v = evaluate(cfg, store, ruta, 1500, f"{MES}-15", "BUSINESS")
+check("business por debajo de 1,3× turista es ERROR", v.level == "error", str(v.level))
+
+v = evaluate(cfg, store, ruta, 2800, f"{MES}-15", "BUSINESS")
+check("business rebajada un 30% es chollo, no error",
+      v.level == "chollo", f"{v.level}: {v.reason}")
+
+# Histórico muy estable: sin el suelo de caída mínima, esto daría z enorme
+v = evaluate(cfg, store, ruta, 3600, f"{MES}-15", "BUSINESS")
+check("bajada pequeña sobre histórico estable no alerta",
+      v.level is None, f"{v.level}: {v.reason}")
+
+# La base de turista no debe contaminar la de business ni al revés
+v = evaluate(cfg, store, ruta, 4000, f"{MES}-15", "BUSINESS")
+check("las cabinas no mezclan histórico",
+      v.baseline is not None and v.baseline > 3000, str(v.baseline))
+
+store.close()
+
+
 # ------------------------------------------------------------------ resultado
 
 print()

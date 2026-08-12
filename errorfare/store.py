@@ -255,6 +255,7 @@ class Store:
         departure_date: str,
         return_date: str | None,
         cooldown_hours: int,
+        travel_class: str,
     ) -> bool:
         since = (datetime.now(timezone.utc) - timedelta(hours=cooldown_hours)).isoformat(
             timespec="seconds"
@@ -264,10 +265,11 @@ class Store:
             SELECT 1 FROM alerts
              WHERE origin = ? AND destination = ? AND departure_date = ?
                AND IFNULL(return_date,'') = IFNULL(?,'')
+               AND travel_class = ?
                AND created_at >= ?
              LIMIT 1
             """,
-            (origin, destination, departure_date, return_date, since),
+            (origin, destination, departure_date, return_date, travel_class, since),
         ).fetchone()
         return row is not None
 

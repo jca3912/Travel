@@ -18,6 +18,17 @@ MAD_TO_SIGMA = 0.6745
 
 LEVEL_ORDER = {None: 0, "chollo": 1, "error": 2}
 
+NOMBRES_CABINA = {
+    "ECONOMY": "turista",
+    "PREMIUM_ECONOMY": "turista premium",
+    "BUSINESS": "business",
+    "FIRST": "primera",
+}
+
+
+def nombre_cabina(cabin: str) -> str:
+    return NOMBRES_CABINA.get(cabin, cabin.lower())
+
 
 @dataclass
 class Verdict:
@@ -39,18 +50,20 @@ def _stronger(a: str | None, b: str | None) -> str | None:
 
 
 def baseline_for(
-    store: Store, cfg: Config, route: Route, departure_date: str
+    store: Store, cfg: Config, route: Route, departure_date: str, cabin: str
 ) -> tuple[list[float], str]:
     """Histórico más específico que tenga muestra suficiente.
 
     Preferimos comparar contra el mismo mes de salida (agosto no vale lo mismo
     que febrero). Si no hay datos de ese mes, caemos al histórico de la ruta.
+    Siempre dentro de la misma cabina: mezclar turista y business daría una
+    mediana que no describe ninguna de las dos.
     """
     month = departure_date[:7]
     monthly = store.history_prices(
         route.origin,
         route.destination,
-        cfg.travel_class,
+        cabin,
         window_days=cfg.history_window_days,
         departure_month=month,
     )
@@ -60,7 +73,7 @@ def baseline_for(
     overall = store.history_prices(
         route.origin,
         route.destination,
-        cfg.travel_class,
+        cabin,
         window_days=cfg.history_window_days,
     )
     if len(overall) >= cfg.min_observations:
@@ -69,14 +82,25 @@ def baseline_for(
     return overall, "ninguno"
 
 
+def economy_median(
+    store: Store, cfg: Config, route: Route, departure_date: str
+) -> float | None:
+    """Mediana de turista para la misma ruta, como referencia cruzada."""
+    history, scope = baseline_for(store, cfg, route, departure_date, "ECONOMY")
+    if scope == "ninguno" or not history:
+        return None
+    return statistics.median(history)
+
+
 def evaluate(
     cfg: Config,
     store: Store,
     route: Route,
     price: float,
     departure_date: str,
+    cabin: str = "ECONOMY",
 ) -> Verdict:
-    history, scope = baseline_for(store, cfg, route, departure_date)
+    history, scope = baseline_for(store, cfg, route, departure_date, cabin)
     n = len(history)
 
     level: str | None = None
@@ -84,13 +108,28 @@ def evaluate(
     median = drop_pct = z = None
 
     # ---- 1. Umbral fijo definido por el usuario (funciona desde el día 1)
-    if route.alert_below is not None and price <= route.alert_below:
+    umbral = route.threshold(cabin)
+    if umbral is not None and price <= umbral:
         level = "chollo"
-        reasons.append(f"por debajo de tu umbral de {route.alert_below:.0f} {cfg.currency}")
+        reasons.append(f"por debajo de tu umbral de {umbral:.0f} {cfg.currency}")
         # Menos de la mitad del umbral ya no es una oferta, es un síntoma
-        if price <= route.alert_below * 0.5:
+        if price <= umbral * 0.5:
             level = "error"
             reasons.append("y a menos de la mitad de ese umbral")
+
+    # ---- 1b. Comparación entre cabinas
+    # Una business que cuesta poco más que la turista habitual no es una oferta
+    # agresiva: casi siempre es una tarifa mal cargada. Es el patrón de los
+    # error fares más sonados, y se detecta sin esperar a tener histórico de
+    # business, que es justo lo que más tarda en acumularse.
+    if cabin != "ECONOMY":
+        eco = economy_median(store, cfg, route, departure_date)
+        if eco is not None and price <= eco * cfg.cross_cabin_ratio:
+            level = _stronger(level, "error")
+            reasons.append(
+                f"{nombre_cabina(cabin)} a precio de turista "
+                f"(mediana de turista {eco:.0f} {cfg.currency})"
+            )
 
     # ---- 2. Estadística robusta sobre el histórico
     if scope != "ninguno":
@@ -107,10 +146,13 @@ def evaluate(
             z = MAD_TO_SIGMA * (median - price) / mad
 
         stat_level: str | None = None
-        if z is not None and z >= cfg.mad_z_error:
+        # El z-score dice si el precio es raro; la caída porcentual, si merece
+        # la pena. Hacen falta las dos: con un histórico muy estable, bajar un
+        # 20 % da un z altísimo sin ser ningún chollo.
+        if z is not None and z >= cfg.mad_z_error and drop_pct >= cfg.min_drop_for_z_error:
             stat_level = "error"
             reasons.append(f"z={z:.1f} sobre el histórico ({scope}, n={n})")
-        elif z is not None and z >= cfg.mad_z_alert:
+        elif z is not None and z >= cfg.mad_z_alert and drop_pct >= cfg.min_drop_for_z_alert:
             stat_level = "chollo"
             reasons.append(f"z={z:.1f} sobre el histórico ({scope}, n={n})")
 

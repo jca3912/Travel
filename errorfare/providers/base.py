@@ -60,8 +60,9 @@ class FlightProvider(ABC):
         destination: str,
         departure: date,
         return_date: date | None,
+        cabin: str,
     ) -> list[Offer]:
-        """Ofertas de una ruta y fecha. Lanza ProviderError si falla."""
+        """Ofertas de una ruta, fecha y cabina. Lanza ProviderError si falla."""
 
     def check_ready(self) -> None:
         """Verifica credenciales/dependencias antes de empezar. Lanza SystemExit."""

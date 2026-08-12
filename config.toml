@@ -14,10 +14,16 @@ provider     = "gflights"
 
 currency     = "USD"          # compras desde EE. UU., las tarifas van en dólares
 adults       = 1
-travel_class = "ECONOMY"      # ECONOMY | PREMIUM_ECONOMY | BUSINESS | FIRST
+
+# Cabinas a vigilar. Cada una se busca por separado y mantiene su propio
+# histórico: 900 $ es un precio normal en turista y un error de tarifa en
+# business, así que mezclarlas daría una mediana que no describe ninguna.
+# Cada cabina que añades multiplica las búsquedas de la pasada.
+# Válidas: ECONOMY, PREMIUM_ECONOMY, BUSINESS, FIRST
+cabins = ["ECONOMY", "PREMIUM_ECONOMY", "BUSINESS"]
 
 # Tope de búsquedas por pasada. Freno de mano contra bucles y sorpresas.
-max_api_calls_per_run = 60
+max_api_calls_per_run = 130
 
 
 [search]
@@ -25,10 +31,10 @@ max_api_calls_per_run = 60
 min_days_ahead = 21
 max_days_ahead = 330
 
-# Con sólo 2 rutas se puede barrer mucha fecha.
-# 2 rutas × 16 fechas = 32 búsquedas/día ≈ 960/mes.
-# Si pasas a "serpapi", baja a 14 para no rozar el límite de 1.000/mes.
-samples_per_route = 16
+# 2 rutas × 12 fechas × 3 cabinas = 72 búsquedas/día ≈ 2.160/mes.
+# Con "gflights" es gratis; si pasas a "serpapi" hay que bajar mucho esto
+# o recortar cabinas, porque el plan básico son 1.000 búsquedas al mes.
+samples_per_route = 12
 
 # Duraciones de viaje en noches. Cada día rota a la siguiente.
 trip_lengths = [7, 10, 14, 21]
@@ -62,12 +68,19 @@ drop_pct_error = 0.60         # −60 % → POSIBLE ERROR
 cooldown_hours = 20
 history_window_days = 120
 
+# Comparación entre cabinas. Una business que cuesta menos que este múltiplo
+# de la mediana de turista se marca como POSIBLE ERROR directamente, sin
+# esperar a tener histórico de business. Es la firma de los errores de tarifa
+# más sonados: la cabina buena publicada a precio de la mala.
+# Con 1.3, una business por debajo de 1,3 × la turista habitual salta.
+cross_cabin_ratio = 1.3
+
 
 # ============================================================
 #  RUTAS
 #  Mismo destino, dos orígenes. `alert_below` es el precio de
-#  ida y vuelta por persona que ya te parece un chollo; a la
-#  mitad de esa cifra se marca como POSIBLE ERROR.
+#  ida y vuelta por persona que ya te parece un chollo, y va
+#  por cabina. A la mitad de esa cifra se marca POSIBLE ERROR.
 # ============================================================
 
 # Origen principal: sales de casa.
@@ -75,13 +88,21 @@ history_window_days = 120
 origin      = "LAS"
 destination = "MAD"
 label       = "Las Vegas"
-alert_below = 550
+
+[routes.alert_below]
+ECONOMY         = 550
+PREMIUM_ECONOMY = 950
+BUSINESS        = 1900
 
 # Origen alternativo: sólo compensa si es bastante más barato, porque
-# primero tienes que plantarte en Los Ángeles. Por eso el umbral es más
-# exigente que el de Las Vegas, no igual.
+# primero tienes que plantarte en Los Ángeles. Por eso los umbrales son
+# más exigentes que los de Las Vegas, no iguales.
 [[routes]]
 origin      = "LAX"
 destination = "MAD"
 label       = "Los Ángeles"
-alert_below = 450
+
+[routes.alert_below]
+ECONOMY         = 450
+PREMIUM_ECONOMY = 850
+BUSINESS        = 1700

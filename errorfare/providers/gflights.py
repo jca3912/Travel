@@ -57,6 +57,7 @@ class GoogleFlightsProvider(FlightProvider):
         destination: str,
         departure: date,
         return_date: date | None,
+        cabin: str,
     ) -> list[Offer]:
         from fast_flights import FlightQuery, Passengers, create_query, get_flights
 
@@ -82,7 +83,7 @@ class GoogleFlightsProvider(FlightProvider):
         query = create_query(
             flights=legs,
             trip="round-trip" if return_date else "one-way",
-            seat=SEAT_MAP[self.cfg.travel_class],
+            seat=SEAT_MAP[cabin],
             passengers=Passengers(adults=self.cfg.adults),
             currency=self.cfg.currency,
             # El límite se aplica a CADA trayecto, que es la semántica que queremos

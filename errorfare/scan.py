@@ -7,7 +7,7 @@ from datetime import date, timedelta
 from typing import Any
 
 from .config import Config, Route
-from .detect import Verdict, evaluate
+from .detect import Verdict, evaluate, nombre_cabina
 from .providers import FlightProvider, Offer, ProviderError, QuotaExhausted
 from .store import Store
 
@@ -17,6 +17,7 @@ FRIDAY = 4
 @dataclass
 class ScanResult:
     route: Route
+    cabin: str
     departure: date
     return_date: date | None
     offer: Offer | None
@@ -95,13 +96,19 @@ def scan(
     nights = trip_nights_for(cfg, rotation)
     departures = sample_departures(cfg, today, rotation)
 
+    # Turista primero: la comparación entre cabinas usa su mediana como
+    # referencia, así que conviene que sus datos entren antes en la base.
+    cabins = sorted(cfg.cabins, key=lambda c: c != "ECONOMY")
+    previstas = len(cfg.routes) * len(departures) * len(cabins)
+
     if verbose:
         vuelta = f"{nights} noches" if nights else "sólo ida"
         print(f"Pasada del {today:%d/%m/%Y} — {vuelta}")
         print(f"Fechas de salida: {', '.join(d.isoformat() for d in departures)}")
+        print(f"Cabinas: {', '.join(nombre_cabina(c) for c in cabins)}")
         print(f"Presupuesto: {cfg.max_api_calls_per_run} búsquedas "
-              f"({len(cfg.routes)} rutas × {len(departures)} fechas = "
-              f"{len(cfg.routes) * len(departures)} previstas)\n")
+              f"({len(cfg.routes)} rutas × {len(departures)} fechas × "
+              f"{len(cabins)} cabinas = {previstas} previstas)\n")
 
     results: list[ScanResult] = []
     quota_hit = False
@@ -110,112 +117,124 @@ def scan(
         if quota_hit:
             break
         stats["routes"] += 1
-        for departure in departures:
-            ret = departure + timedelta(days=nights) if nights else None
-            try:
-                offers = client.search_offers(
-                    route.origin, route.destination, departure, ret
-                )
-            except QuotaExhausted as exc:
-                print(f"  ! {exc}. Corto la pasada aquí.")
-                stats["note"] = str(exc)
-                quota_hit = True
+        for cabin in cabins:
+            if quota_hit:
                 break
-            except ProviderError as exc:
-                if verbose:
-                    print(f"  ! {route.key} {departure}: {exc}")
-                results.append(ScanResult(route, departure, ret, None, None, str(exc)))
-                continue
-
-            if not offers:
-                if verbose:
-                    print(f"  · {route.label:<14} {departure} → sin ofertas")
-                results.append(
-                    ScanResult(route, departure, ret, None, None, "sin ofertas")
-                )
-                continue
-
-            cheapest, descartadas = pick_offer(cfg, offers)
-            if cheapest is None:
-                if verbose:
-                    print(
-                        f"  · {route.label:<14} {departure} → "
-                        f"{descartadas} ofertas, todas con más de {cfg.max_stops} escalas"
+            etiqueta = f"{route.label} {nombre_cabina(cabin)}"
+            for departure in departures:
+                ret = departure + timedelta(days=nights) if nights else None
+                try:
+                    offers = client.search_offers(
+                        route.origin, route.destination, departure, ret, cabin
                     )
-                results.append(
-                    ScanResult(route, departure, ret, None, None, "sin ofertas elegibles")
-                )
-                continue
-            stats["offers"] += 1
-
-            # Evaluamos ANTES de insertar, para que la observación nueva no
-            # contamine su propia línea base.
-            verdict = evaluate(cfg, store, route, cheapest.price, departure.isoformat())
-
-            obs_id = store.record_observation(
-                origin=route.origin,
-                destination=route.destination,
-                label=route.label,
-                departure_date=departure.isoformat(),
-                return_date=ret.isoformat() if ret else None,
-                trip_nights=nights,
-                travel_class=cfg.travel_class,
-                adults=cfg.adults,
-                currency=cheapest.currency,
-                price=cheapest.price,
-                carrier=cheapest.carrier,
-                stops=cheapest.stops,
-                route_path=cheapest.route,
-                duration=cheapest.duration,
-                raw=cheapest.raw,
-            )
-
-            if verdict.is_alert:
-                if store.recent_alert_exists(
-                    route.origin,
-                    route.destination,
-                    departure.isoformat(),
-                    ret.isoformat() if ret else None,
-                    cfg.cooldown_hours,
-                ):
+                except QuotaExhausted as exc:
+                    print(f"  ! {exc}. Corto la pasada aquí.")
+                    stats["note"] = str(exc)
+                    quota_hit = True
+                    break
+                except ProviderError as exc:
                     if verbose:
-                        print(f"  · {route.label:<14} {departure} → alerta repetida, silenciada")
-                else:
-                    store.record_alert(
-                        level=verdict.level,
-                        origin=route.origin,
-                        destination=route.destination,
-                        label=route.label,
-                        departure_date=departure.isoformat(),
-                        return_date=ret.isoformat() if ret else None,
-                        travel_class=cfg.travel_class,
-                        currency=cheapest.currency,
-                        price=cheapest.price,
-                        baseline=verdict.baseline,
-                        drop_pct=verdict.drop_pct,
-                        zscore=verdict.zscore,
-                        sample_size=verdict.sample_size,
-                        reason=verdict.reason,
-                        carrier=cheapest.carrier,
-                        stops=cheapest.stops,
-                        route_path=cheapest.route,
-                        observation_id=obs_id,
+                        print(f"  ! {route.key} {cabin} {departure}: {exc}")
+                    results.append(
+                        ScanResult(route, cabin, departure, ret, None, None, str(exc))
                     )
-                    stats["alerts"] += 1
-                    tag = "!! POSIBLE ERROR" if verdict.level == "error" else "*  CHOLLO"
+                    continue
+
+                if not offers:
+                    if verbose:
+                        print(f"  · {etiqueta:<26} {departure} → sin ofertas")
+                    results.append(
+                        ScanResult(route, cabin, departure, ret, None, None, "sin ofertas")
+                    )
+                    continue
+
+                cheapest, descartadas = pick_offer(cfg, offers)
+                if cheapest is None:
                     if verbose:
                         print(
-                            f"  {tag}  {route.label} {departure} — "
-                            f"{cheapest.price:.0f} {cheapest.currency} ({verdict.reason})"
+                            f"  · {etiqueta:<26} {departure} → {descartadas} ofertas, "
+                            f"todas con más de {cfg.max_stops} escalas"
                         )
-            elif verbose:
-                print(
-                    f"  · {route.label:<14} {departure} → "
-                    f"{cheapest.price:>7.0f} {cheapest.currency} "
-                    f"{cheapest.route:<16} ({verdict.reason})"
+                    results.append(
+                        ScanResult(
+                            route, cabin, departure, ret, None, None, "sin ofertas elegibles"
+                        )
+                    )
+                    continue
+                stats["offers"] += 1
+
+                # Evaluamos ANTES de insertar, para que la observación nueva no
+                # contamine su propia línea base.
+                verdict = evaluate(
+                    cfg, store, route, cheapest.price, departure.isoformat(), cabin
                 )
 
-            results.append(ScanResult(route, departure, ret, cheapest, verdict))
+                obs_id = store.record_observation(
+                    origin=route.origin,
+                    destination=route.destination,
+                    label=route.label,
+                    departure_date=departure.isoformat(),
+                    return_date=ret.isoformat() if ret else None,
+                    trip_nights=nights,
+                    travel_class=cabin,
+                    adults=cfg.adults,
+                    currency=cheapest.currency,
+                    price=cheapest.price,
+                    carrier=cheapest.carrier,
+                    stops=cheapest.stops,
+                    route_path=cheapest.route,
+                    duration=cheapest.duration,
+                    raw=cheapest.raw,
+                )
+
+                if verdict.is_alert:
+                    if store.recent_alert_exists(
+                        route.origin,
+                        route.destination,
+                        departure.isoformat(),
+                        ret.isoformat() if ret else None,
+                        cfg.cooldown_hours,
+                        cabin,
+                    ):
+                        if verbose:
+                            print(f"  · {etiqueta:<26} {departure} → alerta repetida")
+                    else:
+                        store.record_alert(
+                            level=verdict.level,
+                            origin=route.origin,
+                            destination=route.destination,
+                            label=route.label,
+                            departure_date=departure.isoformat(),
+                            return_date=ret.isoformat() if ret else None,
+                            travel_class=cabin,
+                            currency=cheapest.currency,
+                            price=cheapest.price,
+                            baseline=verdict.baseline,
+                            drop_pct=verdict.drop_pct,
+                            zscore=verdict.zscore,
+                            sample_size=verdict.sample_size,
+                            reason=verdict.reason,
+                            carrier=cheapest.carrier,
+                            stops=cheapest.stops,
+                            route_path=cheapest.route,
+                            observation_id=obs_id,
+                        )
+                        stats["alerts"] += 1
+                        tag = "!! POSIBLE ERROR" if verdict.level == "error" else "*  CHOLLO"
+                        if verbose:
+                            print(
+                                f"  {tag}  {etiqueta} {departure} — "
+                                f"{cheapest.price:.0f} {cheapest.currency} "
+                                f"({verdict.reason})"
+                            )
+                elif verbose:
+                    print(
+                        f"  · {etiqueta:<26} {departure} → "
+                        f"{cheapest.price:>7.0f} {cheapest.currency} "
+                        f"{cheapest.route:<16} ({verdict.reason})"
+                    )
+
+                results.append(ScanResult(route, cabin, departure, ret, cheapest, verdict))
 
     stats["api_calls"] = client.calls_made
 

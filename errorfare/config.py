@@ -22,11 +22,16 @@ class Route:
     origin: str
     destination: str
     label: str
-    alert_below: float | None = None
+    #: Umbral fijo por cabina. Una business a 900 $ es un error de tarifa;
+    #: una turista a 900 $ es martes.
+    alert_below: dict[str, float] = field(default_factory=dict)
 
     @property
     def key(self) -> str:
         return f"{self.origin}-{self.destination}"
+
+    def threshold(self, cabin: str) -> float | None:
+        return self.alert_below.get(cabin)
 
 
 @dataclass
@@ -34,7 +39,9 @@ class Config:
     provider: str = "gflights"
     currency: str = "USD"
     adults: int = 1
-    travel_class: str = "ECONOMY"
+    #: Cabinas a vigilar. Cada una se busca por separado y mantiene su propio
+    #: histórico: los precios de business y turista no son comparables.
+    cabins: list[str] = field(default_factory=lambda: ["ECONOMY"])
     max_api_calls_per_run: int = 55
 
     min_days_ahead: int = 21
@@ -52,8 +59,16 @@ class Config:
     mad_z_error: float = 5.0
     drop_pct_alert: float = 0.35
     drop_pct_error: float = 0.60
+    #: Caída mínima para que el z-score pueda disparar por sí solo. Sin esto,
+    #: un histórico muy estable convierte cualquier bajada modesta en un z
+    #: enorme: estadísticamente raro, pero no un chollo.
+    min_drop_for_z_alert: float = 0.15
+    min_drop_for_z_error: float = 0.40
     cooldown_hours: int = 20
     history_window_days: int = 120
+    #: Una cabina superior que cuesta menos que este múltiplo de la mediana de
+    #: turista es la firma clásica del error de tarifa en business.
+    cross_cabin_ratio: float = 1.3
 
     routes: list[Route] = field(default_factory=list)
 
@@ -102,13 +117,26 @@ def load(config_path: Path | None = None) -> Config:
             raise SystemExit(
                 f"Ruta #{i} ({origin}-{destination}): los códigos IATA son de 3 letras"
             )
-        alert_below = item.get("alert_below")
+        raw_threshold = item.get("alert_below")
+        thresholds: dict[str, float] = {}
+        if isinstance(raw_threshold, dict):
+            for cabin, value in raw_threshold.items():
+                cabin = cabin.upper()
+                if cabin not in VALID_CLASSES:
+                    raise SystemExit(
+                        f"Ruta #{i}: cabina desconocida en alert_below: {cabin!r}"
+                    )
+                thresholds[cabin] = float(value)
+        elif raw_threshold is not None:
+            # Forma antigua: un solo número, que era el de turista
+            thresholds["ECONOMY"] = float(raw_threshold)
+
         routes.append(
             Route(
                 origin=origin,
                 destination=destination,
                 label=str(item.get("label") or destination),
-                alert_below=float(alert_below) if alert_below is not None else None,
+                alert_below=thresholds,
             )
         )
 
@@ -116,7 +144,7 @@ def load(config_path: Path | None = None) -> Config:
         provider=str(general.get("provider", "gflights")).lower(),
         currency=str(general.get("currency", "USD")).upper(),
         adults=int(general.get("adults", 1)),
-        travel_class=str(general.get("travel_class", "ECONOMY")).upper(),
+        cabins=[str(c).upper() for c in general.get("cabins", ["ECONOMY"])],
         max_api_calls_per_run=int(general.get("max_api_calls_per_run", 55)),
         min_days_ahead=int(search.get("min_days_ahead", 21)),
         max_days_ahead=int(search.get("max_days_ahead", 300)),
@@ -132,8 +160,11 @@ def load(config_path: Path | None = None) -> Config:
         mad_z_error=float(detection.get("mad_z_error", 5.0)),
         drop_pct_alert=float(detection.get("drop_pct_alert", 0.35)),
         drop_pct_error=float(detection.get("drop_pct_error", 0.60)),
+        min_drop_for_z_alert=float(detection.get("min_drop_for_z_alert", 0.15)),
+        min_drop_for_z_error=float(detection.get("min_drop_for_z_error", 0.40)),
         cooldown_hours=int(detection.get("cooldown_hours", 20)),
         history_window_days=int(detection.get("history_window_days", 120)),
+        cross_cabin_ratio=float(detection.get("cross_cabin_ratio", 1.3)),
         routes=routes,
     )
 
@@ -149,8 +180,15 @@ def _validate(cfg: Config) -> None:
         problems.append(
             f"provider debe ser uno de {list(VALID_PROVIDERS)}, no {cfg.provider!r}"
         )
-    if cfg.travel_class not in VALID_CLASSES:
-        problems.append(f"travel_class debe ser uno de {sorted(VALID_CLASSES)}")
+    if not cfg.cabins:
+        problems.append("cabins no puede estar vacío")
+    for cabin in cfg.cabins:
+        if cabin not in VALID_CLASSES:
+            problems.append(f"cabina desconocida {cabin!r}; válidas: {sorted(VALID_CLASSES)}")
+    if len(set(cfg.cabins)) != len(cfg.cabins):
+        problems.append("hay cabinas repetidas en `cabins`")
+    if cfg.cross_cabin_ratio <= 1:
+        problems.append("cross_cabin_ratio debe ser mayor que 1")
     if not cfg.routes:
         problems.append("no hay ninguna [[routes]] definida")
     if cfg.min_days_ahead >= cfg.max_days_ahead:

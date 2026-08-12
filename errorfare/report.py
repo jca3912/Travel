@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .config import Config
+from .detect import nombre_cabina
 from .store import Store
 
 CSS = """
@@ -293,7 +294,7 @@ def _alert_card(row: dict, currency_default: str) -> str:
       <p class="meta">salida <time>{_fmt_date(row["departure_date"])}</time>{vuelta}
         <span class="sep">·</span><span class="mono">{_esc(row["carrier"] or "??")}</span>
         <span class="sep">·</span>{escalas}
-        <span class="sep">·</span>{_esc(row["travel_class"].lower())}</p>
+        <span class="sep">·</span>{_esc(nombre_cabina(row["travel_class"]))}</p>
       <p class="why">{baseline_html}{_esc(row["reason"])}</p>
     </article>"""
 
@@ -350,7 +351,8 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
         rows.append(
             f"""<tr>
               <td class="dest-cell">{_esc(summary["label"])}
-                  <span>{_esc(summary["origin"])} → {_esc(summary["destination"])}</span></td>
+                  <span>{_esc(summary["origin"])} → {_esc(summary["destination"])}
+                  · {_esc(nombre_cabina(summary["travel_class"]))}</span></td>
               <td class="num">{n}</td>
               <td class="num">{summary["min_price"]:.0f}</td>
               <td class="num">{median:.0f}</td>
@@ -363,7 +365,7 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
     if rows:
         routes_html = f"""<div class="table-scroll"><table>
           <thead><tr>
-            <th>Destino</th><th class="num">Obs.</th>
+            <th>Origen y cabina</th><th class="num">Obs.</th>
             <th class="num">Mín. {_esc(cfg.currency)}</th>
             <th class="num">Mediana</th><th class="num">Último</th>
             <th>Histórico</th><th>Línea base</th>
@@ -393,7 +395,8 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
     <span class="eyebrow">Vigilancia de tarifas</span>
     <h1>Informe diario</h1>
     <p class="sub">{_fecha_larga(now)} · fuente <code>{_esc(cfg.provider)}</code>
-      · {len(cfg.routes)} rutas vigiladas · clase {_esc(cfg.travel_class.lower())}</p>
+      · {len(cfg.routes)} rutas ·
+      {_esc(", ".join(nombre_cabina(c) for c in cfg.cabins))}</p>
   </header>
 
   {demo_banner}
