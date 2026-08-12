@@ -1,0 +1,96 @@
+# ============================================================
+#  errorfare — configuración
+#  Edita este fichero. No hace falta tocar el código.
+# ============================================================
+
+[general]
+currency     = "EUR"
+adults       = 1
+travel_class = "ECONOMY"      # ECONOMY | PREMIUM_ECONOMY | BUSINESS | FIRST
+non_stop     = false          # true = solo vuelos directos
+environment  = "test"         # "test" (datos limitados) | "production" (datos reales)
+
+# Cuota gratuita de Amadeus: 2.000 llamadas/mes ≈ 66/día.
+# Cada combinación ruta × fecha de salida = 1 llamada.
+max_api_calls_per_run = 55
+
+
+[search]
+# Ventana de búsqueda: desde hoy+min a hoy+max
+min_days_ahead = 21
+max_days_ahead = 300
+
+# Cuántas fechas de salida se muestrean por ruta en cada ejecución.
+# Llamadas por ejecución ≈ nº de rutas × samples_per_route
+samples_per_route = 3
+
+# Duraciones de viaje en noches. Cada ejecución rota a la siguiente,
+# así con los días vas cubriendo todas sin gastar cuota de golpe.
+trip_lengths = [7, 10, 14]
+
+# Desplaza las salidas al viernes más cercano (los chollos suelen
+# aparecer en fechas concretas, pero tú viajas en finde).
+prefer_weekend = true
+
+# Sólo ida (sin vuelta). Gasta la mitad de cuota pero los error fares
+# de larga distancia casi siempre son de ida y vuelta.
+one_way = false
+
+
+[detection]
+# Nº mínimo de precios históricos para fiarse de la estadística.
+# Por debajo de esto sólo se usa el umbral fijo `alert_below` de cada ruta.
+min_observations = 8
+
+# Detección robusta: z = 0.6745 · (mediana − precio) / MAD
+mad_z_alert = 3.0             # → CHOLLO
+mad_z_error = 5.0             # → POSIBLE ERROR
+
+# Detección por caída porcentual sobre la mediana histórica
+drop_pct_alert = 0.35         # −35 % → CHOLLO
+drop_pct_error = 0.60         # −60 % → POSIBLE ERROR
+
+# No repetir la misma alerta (misma ruta+fechas) antes de N horas
+cooldown_hours = 20
+
+# Ventana de histórico que se considera "vigente", en días
+history_window_days = 120
+
+
+# ============================================================
+#  RUTAS
+#  origin/destination = código IATA de aeropuerto o ciudad
+#  alert_below        = € por persona (ida y vuelta) que ya te
+#                       parece un chollo. Funciona desde el día 1,
+#                       sin esperar a que se calibre el histórico.
+# ============================================================
+
+[[routes]]
+origin      = "MAD"
+destination = "NRT"
+label       = "Tokio"
+alert_below = 450
+
+[[routes]]
+origin      = "MAD"
+destination = "JFK"
+label       = "Nueva York"
+alert_below = 300
+
+[[routes]]
+origin      = "MAD"
+destination = "BKK"
+label       = "Bangkok"
+alert_below = 420
+
+[[routes]]
+origin      = "MAD"
+destination = "EZE"
+label       = "Buenos Aires"
+alert_below = 500
+
+[[routes]]
+origin      = "MAD"
+destination = "DPS"
+label       = "Bali"
+alert_below = 550
