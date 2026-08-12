@@ -2,25 +2,45 @@
 
 Este repositorio lo ejecuta un agente programado una vez al día. Rutina exacta:
 
-## 1. Comprobar credenciales
+## 1. Preparar el entorno
 
-Deben existir `AMADEUS_CLIENT_ID` y `AMADEUS_CLIENT_SECRET` como variables de
-entorno (secretos del repositorio). Si faltan, **para y avisa** — no sigas.
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+En Windows el intérprete es `.venv\Scripts\python.exe`. El entorno virtual no es
+opcional: `fast-flights` necesita protobuf 6+ y choca con lo que suele haber
+instalado en el Python del sistema.
+
+La fuente por defecto (`gflights`) **no necesita credenciales**. Sólo si
+`config.toml` tiene `provider = "serpapi"` hace falta `SERPAPI_KEY` como
+variable de entorno; si en ese caso falta, **para y avisa**.
 
 ## 2. Ejecutar la pasada
 
 ```bash
-python run.py scan
+.venv/bin/python run.py scan
 ```
 
-Si falla por red o por la API, reintenta **una sola vez**. Si vuelve a fallar,
-genera igualmente el informe con el histórico que haya y di en el resumen que la
-pasada de hoy no se completó. No inventes precios ni rellenes huecos.
+Si falla por red, reintenta **una sola vez**. Si vuelve a fallar, genera
+igualmente el informe con el histórico que haya y di en el resumen que la pasada
+de hoy no se completó. No inventes precios ni rellenes huecos.
+
+Que fallen unas pocas búsquedas es normal: hay combinaciones de ruta y fecha sin
+resultados. Si la pasada termina con estado `degradado`, significa que falló más
+del 30 % y que la fuente puede estar rota o bloqueada. En ese caso **dilo de
+forma destacada en el resumen**: un informe sin alertas porque la fuente está
+caída se parece demasiado a un informe sin alertas porque no hay chollos.
+
+Si `gflights` falla del todo varios días seguidos, la salida es cambiar a
+`provider = "serpapi"` en `config.toml`, pero eso cuesta dinero: propónselo a
+Julio, no lo hagas por tu cuenta.
 
 ## 3. Generar el informe
 
 ```bash
-python run.py report --fragment --hours 26
+.venv/bin/python run.py report --fragment --hours 26
 ```
 
 Escribe `reports/artifact.html`.
@@ -53,7 +73,7 @@ pierde y la línea base nunca se calibra.
 - No toques el umbral `alert_below` de una ruta por tu cuenta. Si crees que está
   mal calibrado, dilo en el resumen y que decida Julio.
 - No compres nada, no reserves nada, no entres en webs de aerolíneas.
-- No subas el `.env` ni imprimas las claves en los logs.
+- No subas el `.env` ni imprimas claves en los logs.
 - Si una alerta parece un error de tarifa real, repórtala tal cual: es Julio
   quien verifica el precio en la web de la compañía antes de comprar.
 

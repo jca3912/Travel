@@ -6,6 +6,7 @@ reports/
 
 __pycache__/
 *.pyc
+.venv/
 
 # OJO: data/prices.db SÍ se versiona a propósito.
 # Es el histórico acumulado, el activo del proyecto. Sin él, el agente de la

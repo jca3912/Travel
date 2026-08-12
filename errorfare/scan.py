@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Any
 
-from .amadeus import AmadeusClient, AmadeusError, Offer, QuotaExhausted
 from .config import Config, Route
 from .detect import Verdict, evaluate
+from .providers import FlightProvider, Offer, ProviderError, QuotaExhausted
 from .store import Store
 
 FRIDAY = 4
@@ -84,7 +84,7 @@ def trip_nights_for(cfg: Config, rotation: int) -> int | None:
 def scan(
     cfg: Config,
     store: Store,
-    client: AmadeusClient,
+    client: FlightProvider,
     stats: dict[str, Any],
     *,
     today: date | None = None,
@@ -99,7 +99,7 @@ def scan(
         vuelta = f"{nights} noches" if nights else "sólo ida"
         print(f"Pasada del {today:%d/%m/%Y} — {vuelta}")
         print(f"Fechas de salida: {', '.join(d.isoformat() for d in departures)}")
-        print(f"Presupuesto: {cfg.max_api_calls_per_run} llamadas "
+        print(f"Presupuesto: {cfg.max_api_calls_per_run} búsquedas "
               f"({len(cfg.routes)} rutas × {len(departures)} fechas = "
               f"{len(cfg.routes) * len(departures)} previstas)\n")
 
@@ -121,7 +121,7 @@ def scan(
                 stats["note"] = str(exc)
                 quota_hit = True
                 break
-            except AmadeusError as exc:
+            except ProviderError as exc:
                 if verbose:
                     print(f"  ! {route.key} {departure}: {exc}")
                 results.append(ScanResult(route, departure, ret, None, None, str(exc)))
@@ -165,7 +165,7 @@ def scan(
                 price=cheapest.price,
                 carrier=cheapest.carrier,
                 stops=cheapest.stops,
-                stops_detail=cheapest.stops_detail,
+                route_path=cheapest.route,
                 duration=cheapest.duration,
                 raw=cheapest.raw,
             )
@@ -198,7 +198,7 @@ def scan(
                         reason=verdict.reason,
                         carrier=cheapest.carrier,
                         stops=cheapest.stops,
-                        stops_detail=cheapest.stops_detail,
+                        route_path=cheapest.route,
                         observation_id=obs_id,
                     )
                     stats["alerts"] += 1
@@ -212,10 +212,25 @@ def scan(
                 print(
                     f"  · {route.label:<14} {departure} → "
                     f"{cheapest.price:>7.0f} {cheapest.currency} "
-                    f"[{cheapest.stops_detail} esc.] ({verdict.reason})"
+                    f"{cheapest.route:<16} ({verdict.reason})"
                 )
 
             results.append(ScanResult(route, departure, ret, cheapest, verdict))
 
     stats["api_calls"] = client.calls_made
+
+    # Que falle una búsqueda suelta es normal: hay combinaciones sin resultados.
+    # Que fallen casi todas significa que la fuente se ha roto, y eso no puede
+    # pasar en silencio: el informe saldría vacío y parecería que no hay chollos.
+    fallidas = sum(1 for r in results if r.error)
+    if results and fallidas / len(results) > 0.3:
+        aviso = (
+            f"{fallidas} de {len(results)} búsquedas fallaron: la fuente "
+            f"'{cfg.provider}' puede estar rota o bloqueada"
+        )
+        stats["note"] = aviso
+        stats["status"] = "degradado"
+        if verbose:
+            print(f"\n  ⚠ {aviso}")
+
     return results

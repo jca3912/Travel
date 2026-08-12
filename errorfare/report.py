@@ -248,13 +248,18 @@ def _sparkline(prices: list[float], width: int = 130, height: int = 28) -> str:
     )
 
 
-def _escalas(stops: int | None, detail: str | None) -> str:
-    """'1+2' significa una escala a la ida y dos a la vuelta."""
-    if not stops:
-        return "sin escalas"
-    if detail and "+" in detail:
-        return f"escalas {_esc(detail)} (ida+vuelta)"
-    return f"{stops} escala" + ("s" if stops > 1 else "")
+def _escalas(stops: int | None, route_path: str | None) -> str:
+    """Escalas del trayecto de ida, con los aeropuertos por los que pasa."""
+    texto = (
+        "sin escalas"
+        if not stops
+        else f"{stops} escala" + ("s" if stops > 1 else "")
+    )
+    if route_path and "-" in route_path:
+        vias = route_path.split("-")[1:-1]
+        if vias:
+            texto += " vía " + ", ".join(_esc(v) for v in vias)
+    return texto
 
 
 def _alert_card(row: dict, currency_default: str) -> str:
@@ -263,7 +268,7 @@ def _alert_card(row: dict, currency_default: str) -> str:
     badge = "Posible error de tarifa" if level == "error" else "Chollo"
     cur = row["currency"] or currency_default
 
-    escalas = _escalas(row["stops"], row["stops_detail"])
+    escalas = _escalas(row["stops"], row["route_path"])
     vuelta = (
         f'<span class="sep">·</span>vuelta <time>{_fmt_date(row["return_date"])}</time>'
         if row["return_date"]
@@ -387,7 +392,7 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
   <header class="top">
     <span class="eyebrow">Vigilancia de tarifas</span>
     <h1>Informe diario</h1>
-    <p class="sub">{_fecha_larga(now)} · entorno <code>{_esc(cfg.environment)}</code>
+    <p class="sub">{_fecha_larga(now)} · fuente <code>{_esc(cfg.provider)}</code>
       · {len(cfg.routes)} rutas vigiladas · clase {_esc(cfg.travel_class.lower())}</p>
   </header>
 
@@ -416,8 +421,10 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
 
   <footer>
     <p>{run_line}</p>
-    <p>Cuota gratuita de Amadeus: 2.000 llamadas al mes. Llevas
-       <strong class="mono">{monthly}</strong>.</p>
+    <p>Búsquedas este mes: <strong class="mono">{monthly}</strong>.</p>
+    <p>Las escalas y la ruta indicadas son las del trayecto de <strong>ida</strong>.
+       La vuelta va acotada por el mismo límite, porque el filtro se aplica en la
+       propia consulta a los dos trayectos.</p>
     <p>Una alerta no es una reserva confirmada. Las tarifas erróneas se corrigen en
        minutos y la aerolínea puede cancelar el billete después de emitirlo. Verifica
        el precio en la web de la compañía antes de comprar.</p>

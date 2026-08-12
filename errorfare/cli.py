@@ -11,9 +11,10 @@ from pathlib import Path
 
 from . import config as config_mod
 from . import report as report_mod
-from .amadeus import AmadeusClient, AmadeusError
 from .config import REPORTS_DIR, Config
 from .detect import evaluate
+from . import providers
+from .providers import ProviderError
 from .scan import sample_departures, rotation_for, scan, trip_nights_for
 from .store import Store
 
@@ -27,24 +28,26 @@ def cmd_scan(cfg: Config, args: argparse.Namespace) -> int:
         rotation = rotation_for(today)
         nights = trip_nights_for(cfg, rotation)
         departures = sample_departures(cfg, today, rotation)
-        print(f"Simulacro — no se llama a la API.\n")
+        print("Simulacro — no se consulta la fuente de datos.\n")
         print(f"Duración del viaje: {nights} noches" if nights else "Sólo ida")
         print(f"Fechas de salida: {', '.join(d.isoformat() for d in departures)}")
         print(f"Rutas: {', '.join(r.key for r in cfg.routes)}")
         total = len(cfg.routes) * len(departures)
-        print(f"\nLlamadas que gastaría: {total} (presupuesto {cfg.max_api_calls_per_run})")
-        print(f"Proyección mensual: {total * 30} de 2.000 disponibles")
-        if total * 30 > 2000:
-            print("  ⚠ Te pasarías de la cuota gratuita. Baja samples_per_route o rutas.")
+        print(f"\nBúsquedas que gastaría: {total} (presupuesto {cfg.max_api_calls_per_run})")
+        print(f"Proyección mensual: {total * 30}")
+        if cfg.provider == "serpapi" and total * 30 > 1000:
+            print("  ⚠ SerpApi da 1.000 búsquedas/mes en el plan básico. Baja "
+                  "samples_per_route o sube de plan.")
         return 0
 
     with Store(cfg.db_path) as store:
-        client = AmadeusClient(cfg, verbose=args.verbose)
+        client = providers.build(cfg, verbose=args.verbose)
+        client.check_ready()
         with store.run() as stats:
             scan(cfg, store, client, stats, verbose=True)
         print(
             f"\nHecho: {stats['offers']} precios, {stats['alerts']} alertas nuevas, "
-            f"{stats['api_calls']} llamadas ({store.calls_this_month()} este mes)."
+            f"{stats['api_calls']} búsquedas ({store.calls_this_month()} este mes)."
         )
     return 0
 
@@ -86,14 +89,21 @@ def cmd_daily(cfg: Config, args: argparse.Namespace) -> int:
 
 def cmd_status(cfg: Config, args: argparse.Namespace) -> int:
     with Store(cfg.db_path) as store:
+        provider = providers.build(cfg)
+        try:
+            provider.check_ready()
+            listo = "lista"
+        except SystemExit as exc:
+            listo = f"NO LISTA — {str(exc).splitlines()[0]}"
+
         print(f"Base de datos : {cfg.db_path}")
-        print(f"Entorno       : {cfg.environment} ({cfg.host})")
-        print(f"Credenciales  : {'configuradas' if cfg.client_id else 'FALTAN (.env)'}")
+        print(f"Fuente        : {cfg.provider} — {provider.description}")
+        print(f"Estado fuente : {listo}")
         print(f"Rutas         : {len(cfg.routes)}")
         print(f"Observaciones : {store.observation_count()}")
         print(f"Alertas       : {store.alert_count()}")
         print(f"Ejecuciones   : {store.run_count()}")
-        print(f"Llamadas mes  : {store.calls_this_month()} / 2000\n")
+        print(f"Búsquedas mes : {store.calls_this_month()}\n")
 
         summaries = store.route_summary(cfg.history_window_days)
         if not summaries:
@@ -143,7 +153,11 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                         price=price,
                         carrier=rng.choice(["IB", "AF", "KL", "LH", "UA", "AA"]),
                         stops=(s := rng.choice([1, 1, 1, 2])),
-                        stops_detail=f"{s}+{rng.choice([1, 1, s])}",
+                        route_path="-".join(
+                            [route.origin]
+                            + rng.sample(["IAD", "ATL", "DFW", "JFK", "ORD", "MIA"], s)
+                            + [route.destination]
+                        ),
                         duration=f"{rng.randint(14, 28)}h {rng.randint(0, 55)}m",
                         observed_at=observed.isoformat(timespec="seconds"),
                     )
@@ -177,9 +191,9 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                     adults=cfg.adults,
                     currency=cfg.currency,
                     price=price,
-                    carrier="XX",
+                    carrier="Prueba",
                     stops=1,
-                    stops_detail="1+1",
+                    route_path=f"{route.origin}-JFK-{route.destination}",
                     duration="19h 40m",
                 )
                 if verdict.is_alert:
@@ -198,9 +212,9 @@ def cmd_simulate(cfg: Config, args: argparse.Namespace) -> int:
                         zscore=verdict.zscore,
                         sample_size=verdict.sample_size,
                         reason=verdict.reason,
-                        carrier="XX",
+                        carrier="Prueba",
                         stops=1,
-                        stops_detail="1+1",
+                        route_path=f"{route.origin}-JFK-{route.destination}",
                         observation_id=obs_id,
                     )
                     tag = "POSIBLE ERROR" if verdict.level == "error" else "CHOLLO"
@@ -274,8 +288,8 @@ def main(argv: list[str] | None = None) -> int:
     cfg = config_mod.load(args.config)
     try:
         return int(args.func(cfg, args))
-    except AmadeusError as exc:
-        print(f"Error de la API: {exc}", file=sys.stderr)
+    except ProviderError as exc:
+        print(f"Error de la fuente de datos: {exc}", file=sys.stderr)
         return 2
     except KeyboardInterrupt:
         print("\nInterrumpido.", file=sys.stderr)

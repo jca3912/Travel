@@ -1,0 +1,7 @@
+# Sólo hacen falta con provider = "gflights" (el valor por defecto).
+# Con provider = "serpapi" el proyecto funciona con la stdlib pelada.
+#
+# typing_extensions va aparte porque fast-flights 3.0.2 lo usa pero se le
+# olvidó declararlo como dependencia.
+fast-flights>=3.0.2
+typing_extensions

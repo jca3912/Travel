@@ -13,10 +13,8 @@ REPORTS_DIR = ROOT / "reports"
 
 VALID_CLASSES = {"ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"}
 
-HOSTS = {
-    "test": "https://test.api.amadeus.com",
-    "production": "https://api.amadeus.com",
-}
+# Se declaran aquí, y no en providers/, para no importar en círculo.
+VALID_PROVIDERS = ("gflights", "serpapi")
 
 
 @dataclass(frozen=True)
@@ -33,11 +31,10 @@ class Route:
 
 @dataclass
 class Config:
-    currency: str = "EUR"
+    provider: str = "gflights"
+    currency: str = "USD"
     adults: int = 1
     travel_class: str = "ECONOMY"
-    non_stop: bool = False
-    environment: str = "test"
     max_api_calls_per_run: int = 55
 
     min_days_ahead: int = 21
@@ -49,7 +46,6 @@ class Config:
     max_stops: int = 2
     preferred_max_stops: int = 1
     stop_penalty_pct: float = 15.0
-    offers_per_search: int = 20
 
     min_observations: int = 8
     mad_z_alert: float = 3.0
@@ -60,13 +56,6 @@ class Config:
     history_window_days: int = 120
 
     routes: list[Route] = field(default_factory=list)
-
-    client_id: str | None = None
-    client_secret: str | None = None
-
-    @property
-    def host(self) -> str:
-        return HOSTS[self.environment]
 
     @property
     def db_path(self) -> Path:
@@ -124,11 +113,10 @@ def load(config_path: Path | None = None) -> Config:
         )
 
     cfg = Config(
-        currency=str(general.get("currency", "EUR")).upper(),
+        provider=str(general.get("provider", "gflights")).lower(),
+        currency=str(general.get("currency", "USD")).upper(),
         adults=int(general.get("adults", 1)),
         travel_class=str(general.get("travel_class", "ECONOMY")).upper(),
-        non_stop=bool(general.get("non_stop", False)),
-        environment=str(general.get("environment", "test")).lower(),
         max_api_calls_per_run=int(general.get("max_api_calls_per_run", 55)),
         min_days_ahead=int(search.get("min_days_ahead", 21)),
         max_days_ahead=int(search.get("max_days_ahead", 300)),
@@ -139,7 +127,6 @@ def load(config_path: Path | None = None) -> Config:
         max_stops=int(search.get("max_stops", 2)),
         preferred_max_stops=int(search.get("preferred_max_stops", 1)),
         stop_penalty_pct=float(search.get("stop_penalty_pct", 15.0)),
-        offers_per_search=int(search.get("offers_per_search", 20)),
         min_observations=int(detection.get("min_observations", 8)),
         mad_z_alert=float(detection.get("mad_z_alert", 3.0)),
         mad_z_error=float(detection.get("mad_z_error", 5.0)),
@@ -148,8 +135,6 @@ def load(config_path: Path | None = None) -> Config:
         cooldown_hours=int(detection.get("cooldown_hours", 20)),
         history_window_days=int(detection.get("history_window_days", 120)),
         routes=routes,
-        client_id=os.environ.get("AMADEUS_CLIENT_ID"),
-        client_secret=os.environ.get("AMADEUS_CLIENT_SECRET"),
     )
 
     _validate(cfg)
@@ -160,8 +145,10 @@ def load(config_path: Path | None = None) -> Config:
 
 def _validate(cfg: Config) -> None:
     problems: list[str] = []
-    if cfg.environment not in HOSTS:
-        problems.append(f"environment debe ser 'test' o 'production', no {cfg.environment!r}")
+    if cfg.provider not in VALID_PROVIDERS:
+        problems.append(
+            f"provider debe ser uno de {list(VALID_PROVIDERS)}, no {cfg.provider!r}"
+        )
     if cfg.travel_class not in VALID_CLASSES:
         problems.append(f"travel_class debe ser uno de {sorted(VALID_CLASSES)}")
     if not cfg.routes:
@@ -174,15 +161,8 @@ def _validate(cfg: Config) -> None:
         problems.append("trip_lengths no puede estar vacío")
     if cfg.preferred_max_stops > cfg.max_stops:
         problems.append("preferred_max_stops no puede ser mayor que max_stops")
-    if cfg.max_stops < 0:
-        problems.append("max_stops no puede ser negativo")
-    if cfg.non_stop and cfg.max_stops > 0:
-        problems.append(
-            "non_stop = true contradice max_stops > 0: elige una de las dos formas "
-            "de limitar escalas"
-        )
-    if not 1 <= cfg.offers_per_search <= 250:
-        problems.append("offers_per_search debe estar entre 1 y 250")
+    if not 0 <= cfg.max_stops <= 2:
+        problems.append("max_stops debe estar entre 0 y 2 (es el tope que aceptan las fuentes)")
     if cfg.mad_z_error < cfg.mad_z_alert:
         problems.append("mad_z_error debería ser mayor que mad_z_alert")
     if cfg.drop_pct_error < cfg.drop_pct_alert:

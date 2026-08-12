@@ -4,13 +4,19 @@
 # ============================================================
 
 [general]
-currency     = "USD"          # compras desde EE. UU., las tarifas se publican en dólares
+# Fuente de precios:
+#   "gflights" — Google Flights vía el paquete fast-flights. Gratis, sin
+#                registro. Es un scraper no oficial: puede romperse si Google
+#                cambia su web, y desde IPs de servidor pueden bloquearlo.
+#   "serpapi"  — los mismos datos servidos por SerpApi. De pago (25 $/mes por
+#                1.000 búsquedas) pero estable. Necesita SERPAPI_KEY en .env.
+provider     = "gflights"
+
+currency     = "USD"          # compras desde EE. UU., las tarifas van en dólares
 adults       = 1
 travel_class = "ECONOMY"      # ECONOMY | PREMIUM_ECONOMY | BUSINESS | FIRST
-non_stop     = false          # LAS-MAD no tiene vuelo directo; se filtra por max_stops
-environment  = "test"         # "test" (datos limitados) | "production" (datos reales)
 
-# Cuota gratuita de Amadeus: 2.000 llamadas/mes ≈ 66/día.
+# Tope de búsquedas por pasada. Freno de mano contra bucles y sorpresas.
 max_api_calls_per_run = 60
 
 
@@ -19,8 +25,9 @@ max_api_calls_per_run = 60
 min_days_ahead = 21
 max_days_ahead = 330
 
-# Con sólo 2 rutas sobra cuota, así que barremos muchas fechas.
-# 2 rutas × 16 fechas = 32 llamadas/día ≈ 960/mes.
+# Con sólo 2 rutas se puede barrer mucha fecha.
+# 2 rutas × 16 fechas = 32 búsquedas/día ≈ 960/mes.
+# Si pasas a "serpapi", baja a 14 para no rozar el límite de 1.000/mes.
 samples_per_route = 16
 
 # Duraciones de viaje en noches. Cada día rota a la siguiente.
@@ -44,10 +51,6 @@ preferred_max_stops = 1       # lo que quieres de verdad
 # prefiera a uno de 1. Con 15, una segunda escala sólo gana si ahorra más
 # del 15 %; si no, se queda el de una escala aunque sea algo más caro.
 stop_penalty_pct = 15
-
-# Ofertas que se piden por búsqueda. Hacen falta bastantes porque el filtro
-# de escalas lo aplicamos nosotros. No consume cuota extra.
-offers_per_search = 20
 
 
 [detection]

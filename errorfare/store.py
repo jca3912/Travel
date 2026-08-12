@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS observations (
     price          REAL    NOT NULL,
     carrier        TEXT,
     stops          INTEGER,
-    stops_detail   TEXT,
+    route_path     TEXT,
     duration       TEXT,
     offer_json     TEXT
 );
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS alerts (
     reason         TEXT    NOT NULL,
     carrier        TEXT,
     stops          INTEGER,
-    stops_detail   TEXT,
+    route_path     TEXT,
     observation_id INTEGER REFERENCES observations(id)
 );
 
@@ -85,7 +85,38 @@ class Store:
         self.conn = sqlite3.connect(self.path)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
         self.conn.commit()
+
+    def _migrate(self) -> None:
+        """Añade columnas que falten en una base creada por una versión anterior.
+
+        `CREATE TABLE IF NOT EXISTS` no toca una tabla que ya existe, así que sin
+        esto un cambio de esquema rompería la pasada diaria con el histórico ya
+        acumulado dentro. Sólo se añaden columnas: nunca se borra nada.
+        """
+        expected = {
+            "observations": {
+                "route_path": "TEXT",
+                "stops": "INTEGER",
+                "duration": "TEXT",
+                "offer_json": "TEXT",
+            },
+            "alerts": {
+                "route_path": "TEXT",
+                "stops": "INTEGER",
+                "sample_size": "INTEGER",
+            },
+        }
+        for table, columns in expected.items():
+            present = {
+                row[1] for row in self.conn.execute(f"PRAGMA table_info({table})")
+            }
+            if not present:  # la tabla no existe todavía
+                continue
+            for name, sql_type in columns.items():
+                if name not in present:
+                    self.conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {sql_type}")
 
     def close(self) -> None:
         self.conn.close()
@@ -114,7 +145,7 @@ class Store:
         carrier: str | None,
         stops: int | None,
         duration: str | None,
-        stops_detail: str | None = None,
+        route_path: str | None = None,
         raw: dict[str, Any] | None = None,
         observed_at: str | None = None,
     ) -> int:
@@ -123,7 +154,7 @@ class Store:
             INSERT INTO observations (
                 observed_at, origin, destination, label, departure_date, return_date,
                 trip_nights, travel_class, adults, currency, price, carrier, stops,
-                stops_detail, duration, offer_json
+                route_path, duration, offer_json
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """,
             (
@@ -140,7 +171,7 @@ class Store:
                 price,
                 carrier,
                 stops,
-                stops_detail,
+                route_path,
                 duration,
                 json.dumps(raw, separators=(",", ":")) if raw else None,
             ),
@@ -244,7 +275,7 @@ class Store:
         cols = (
             "created_at,level,origin,destination,label,departure_date,return_date,"
             "travel_class,currency,price,baseline,drop_pct,zscore,sample_size,reason,"
-            "carrier,stops,stops_detail,observation_id"
+            "carrier,stops,route_path,observation_id"
         )
         keys = cols.split(",")
         kw.setdefault("created_at", utcnow())
