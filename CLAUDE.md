@@ -33,6 +33,12 @@ del 30 % y que la fuente puede estar rota o bloqueada. En ese caso **dilo de
 forma destacada en el resumen**: un informe sin alertas porque la fuente está
 caída se parece demasiado a un informe sin alertas porque no hay chollos.
 
+Cuando la pasada corre en la nube, la causa más probable de un `degradado`
+persistente es que Google Flights esté bloqueando la IP del datacenter, no que
+el paquete se haya roto. Se distingue mirando si falla *todo* desde el primer
+día (bloqueo) o si empezó a fallar de golpe tras funcionar semanas (cambio en
+la web de Google).
+
 Si `gflights` falla del todo varios días seguidos, la salida es cambiar a
 `provider = "serpapi"` en `config.toml`, pero eso cuesta dinero: propónselo a
 Julio, no lo hagas por tu cuenta.
