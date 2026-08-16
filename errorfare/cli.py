@@ -317,6 +317,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # La consola de Windows es cp1252 y no sabe escribir "→" ni "⚠": sin esto la
+    # pasada se cae a mitad, con precios ya guardados y el informe sin generar.
+    for flujo in (sys.stdout, sys.stderr):
+        if hasattr(flujo, "reconfigure"):
+            flujo.reconfigure(encoding="utf-8", errors="replace")
+
     args = build_parser().parse_args(argv)
     cfg = config_mod.load(args.config)
     try:
