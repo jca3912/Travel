@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
+import statistics
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -231,6 +232,42 @@ class Store:
                 (since,),
             )
         )
+
+    def monthly_summary(self) -> list[sqlite3.Row]:
+        """Precios agrupados por mes de *salida*, no por mes de observación.
+
+        Es la pregunta que de verdad se hace uno mirando el informe: cuándo sale
+        barato volar. Agrupar por fecha de observación sólo diría cuándo se
+        consultó, que es un artefacto de cuándo corre la pasada.
+        """
+        return list(
+            self.conn.execute(
+                """
+                SELECT SUBSTR(departure_date, 1, 7) AS month,
+                       origin, destination, label, travel_class, currency,
+                       COUNT(*)   AS n,
+                       MIN(price) AS min_price
+                  FROM observations
+                 GROUP BY month, origin, travel_class
+                 ORDER BY month, origin
+                """
+            )
+        )
+
+    def monthly_medians(self) -> dict[tuple[str, str, str], float]:
+        """Mediana por (mes de salida, origen, cabina).
+
+        SQLite no trae mediana, y la media aquí no sirve: los precios de vuelos
+        tienen colas largas y una tarifa rara la desplaza entera. Con 167 filas
+        sale más barato ordenarlo en Python que inventar percentiles en SQL.
+        """
+        grupos: dict[tuple[str, str, str], list[float]] = {}
+        for row in self.conn.execute(
+            "SELECT SUBSTR(departure_date, 1, 7), origin, travel_class, price"
+            "  FROM observations"
+        ):
+            grupos.setdefault((row[0], row[1], row[2]), []).append(row[3])
+        return {k: statistics.median(v) for k, v in grupos.items()}
 
     def latest_prices_for_route(
         self, origin: str, destination: str, travel_class: str, limit: int = 60

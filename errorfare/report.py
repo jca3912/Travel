@@ -180,6 +180,24 @@ td.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabu
         background: var(--surface-2); color: var(--ink-faint); }
 .pill.ready { background: var(--accent-soft); color: var(--accent); }
 
+/* --- tabla mensual ------------------------------------------------------ */
+.mes-bloque { display: flex; flex-direction: column; gap: .45rem; }
+.mes-bloque + .mes-bloque { margin-top: 1.1rem; }
+.mes-bloque h3 { font-size: .95rem; font-weight: 620; margin: 0;
+                 letter-spacing: -0.01em; }
+.mes-bloque h3 span { font: 400 .78rem/1 var(--mono); color: var(--ink-faint);
+                      letter-spacing: .05em; margin-left: .4rem; }
+table.mensual { min-width: 460px; }
+table.mensual td.mes { font: 500 .82rem/1 var(--mono); color: var(--ink-soft);
+                       letter-spacing: .04em; white-space: nowrap; }
+table.mensual td.num { font-weight: 600; }
+table.mensual td.sin { color: var(--ink-faint); font-weight: 400; }
+/* Mediana y tamaño de muestra: presentes, pero sin competir con el mínimo. */
+table.mensual .med { display: block; font-weight: 400; font-size: .76rem;
+                     color: var(--ink-faint); margin-top: .15rem; }
+table.mensual .med .n { letter-spacing: .04em; }
+table.mensual td.suelo { color: var(--good); }
+
 /* --- avisos y vacíos ---------------------------------------------------- */
 .notice { border: 1px solid var(--border); border-left: 4px solid var(--accent);
           background: var(--surface); border-radius: 3px; padding: .85rem 1.1rem;
@@ -247,6 +265,84 @@ def _sparkline(prices: list[float], width: int = 130, height: int = 28) -> str:
         f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="2.4" fill="var(--accent)"/>'
         f"</svg>"
     )
+
+
+def _mes_corto(iso_month: str) -> str:
+    """'2027-01' → 'ene 2027'."""
+    try:
+        anio, mes = iso_month.split("-")
+        return f"{MESES[int(mes) - 1][:3]} {anio}"
+    except (ValueError, IndexError):
+        return iso_month
+
+
+def _tabla_mensual(store: Store, cfg: Config) -> str:
+    """Precio por mes de salida. Una tabla por origen, una columna por cabina.
+
+    Se marca el mínimo de cada columna para que se vea de un vistazo cuándo sale
+    barato volar, que es para lo que uno mira esta tabla.
+    """
+    filas = [dict(r) for r in store.monthly_summary()]
+    if not filas:
+        return ""
+
+    medianas = store.monthly_medians()
+    meses = sorted({f["month"] for f in filas})
+    etiquetas = {f["origin"]: (f["label"], f["destination"]) for f in filas}
+    indice = {(f["month"], f["origin"], f["travel_class"]): f for f in filas}
+
+    bloques = []
+    for origin in sorted(etiquetas):
+        # El mínimo de cada cabina en toda la tabla, para resaltarlo.
+        suelos = {
+            cabin: min(
+                (
+                    indice[(m, origin, cabin)]["min_price"]
+                    for m in meses
+                    if (m, origin, cabin) in indice
+                ),
+                default=None,
+            )
+            for cabin in cfg.cabins
+        }
+
+        cuerpo = []
+        for m in meses:
+            celdas = []
+            for cabin in cfg.cabins:
+                f = indice.get((m, origin, cabin))
+                if f is None:
+                    celdas.append('<td class="num sin">—</td>')
+                    continue
+                mediana = medianas.get((m, origin, cabin), f["min_price"])
+                suelo = suelos[cabin] is not None and f["min_price"] <= suelos[cabin]
+                # La n va visible a propósito: un mes con n=1 es una anécdota, no
+                # un precio de referencia, y sin el dato no hay forma de saberlo.
+                celdas.append(
+                    f'<td class="num{" suelo" if suelo else ""}">'
+                    f'{f["min_price"]:.0f}'
+                    f'<span class="med">{mediana:.0f}'
+                    f'<span class="n"> · n={f["n"]}</span></span></td>'
+                )
+            cuerpo.append(
+                f'<tr><td class="mes">{_esc(_mes_corto(m))}</td>{"".join(celdas)}</tr>'
+            )
+
+        cabeceras = "".join(
+            f'<th class="num">{_esc(nombre_cabina(c))}</th>' for c in cfg.cabins
+        )
+        bloques.append(
+            f"""<div class="mes-bloque">
+              <h3>{_esc(etiquetas[origin][0])} <span>{_esc(origin)} →
+                {_esc(etiquetas[origin][1])}</span></h3>
+              <div class="table-scroll"><table class="mensual">
+                <thead><tr><th>Mes de salida</th>{cabeceras}</tr></thead>
+                <tbody>{"".join(cuerpo)}</tbody>
+              </table></div>
+            </div>"""
+        )
+
+    return "".join(bloques)
 
 
 def _escalas(stops: int | None, route_path: str | None) -> str:
@@ -377,6 +473,21 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
             "<code>python run.py scan</code> para la primera pasada.</div>"
         )
 
+    # -------------------------------------------------------- por meses
+    mensual_html = _tabla_mensual(store, cfg)
+    mensual_section = (
+        f"""
+  <section>
+    <h2>Precio por mes de salida</h2>
+    <p class="sub">Mínimo en grande; debajo, mediana y número de precios
+      observados. En <span style="color:var(--good)">verde</span>, el mes más
+      barato de cada cabina.</p>
+    {mensual_html}
+  </section>"""
+        if mensual_html
+        else ""
+    )
+
     # ------------------------------------------------------------ pie
     last_run = (store.last_runs(1) or [None])[0]
     run_line = "Sin ejecuciones registradas."
@@ -421,6 +532,7 @@ def build(cfg: Config, store: Store, *, hours: int = 26, standalone: bool = True
     <h2>Estado de cada ruta</h2>
     {routes_html}
   </section>
+{mensual_section}
 
   <footer>
     <p>{run_line}</p>
