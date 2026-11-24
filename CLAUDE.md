@@ -1,5 +1,9 @@
 # Instrucciones para la pasada diaria
 
+> **Hay dos tareas programadas en este repositorio.** Si la tuya es la búsqueda de
+> apartamento en Madrid, sigue `ESTANCIAS.md` e ignora todo lo que viene debajo.
+> Lo de este fichero es sólo para la pasada de **vuelos**.
+
 Este repositorio lo ejecuta un agente programado una vez al día. Rutina exacta:
 
 ## 1. Preparar el entorno

@@ -1,0 +1,755 @@
+{
+ "run_date": "2026-11-24",
+ "busquedas": [
+  {
+   "source": "booking",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "395167",
+     "nombre": "Apartamentos Adelfas",
+     "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2664.86,
+     "lat": 40.401747,
+     "lon": -3.668979,
+     "tipo": "Apartamento",
+     "distrito": "Retiro",
+     "nota": 7.9,
+     "opiniones": 407
+    },
+    {
+     "id": "13614206",
+     "nombre": "AeroSuites202 Alojamiento Madrid",
+     "url": "https://www.booking.com/hotel/es/aerosuites202-alojamiento-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2389.31,
+     "lat": 40.474682,
+     "lon": -3.580974,
+     "tipo": "Apartamento",
+     "distrito": "Barajas",
+     "nota": 8.4,
+     "opiniones": 22
+    },
+    {
+     "id": "13387849",
+     "nombre": "Tejado de Antigua Fábrica Industrial en Acacias",
+     "url": "https://www.booking.com/hotel/es/atico-con-vistas-en-el-centro-de-la-capital-madrilena.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2302.83,
+     "lat": 40.403044,
+     "lon": -3.704731,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 69
+    },
+    {
+     "id": "17413204",
+     "nombre": "Chamberi 1 Luxury Studio",
+     "url": "https://www.booking.com/hotel/es/chamberi-1-luxury-studio.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3233.29,
+     "lat": 40.440611,
+     "lon": -3.694442,
+     "tipo": "Apartamento",
+     "distrito": "Chamberí",
+     "nota": 8.3,
+     "opiniones": 6
+    },
+    {
+     "id": "15496732",
+     "nombre": "Sarria Living La Vaguada Suites",
+     "url": "https://www.booking.com/hotel/es/sarria-living-la-vaguada-suites.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2213.97,
+     "lat": 40.475057,
+     "lon": -3.71427,
+     "tipo": "Apartahotel",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 8.6,
+     "opiniones": 135
+    },
+    {
+     "id": "11479829",
+     "nombre": "Puerta de Hierro Apartments",
+     "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2820.59,
+     "lat": 40.47553,
+     "lon": -3.741558,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 7.3,
+     "opiniones": 422
+    },
+    {
+     "id": "12546779",
+     "nombre": "Río Manzanares - Apartamento de 1 dormitorio",
+     "url": "https://www.booking.com/hotel/es/charming-almendrales.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2871.91,
+     "lat": 40.381461,
+     "lon": -3.702266,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.6,
+     "opiniones": 61
+    },
+    {
+     "id": "10832758",
+     "nombre": "TravelStay General Ricardos",
+     "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2510.85,
+     "lat": 40.392652,
+     "lon": -3.725399,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.6,
+     "opiniones": 602
+    },
+    {
+     "id": "11880200",
+     "nombre": "Madrid Villaverde - Apartamentos acogedores, AC",
+     "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3088.28,
+     "lat": 40.349565,
+     "lon": -3.688856,
+     "tipo": "Apartamento",
+     "distrito": "Villaverde",
+     "nota": 8.2,
+     "opiniones": 327
+    },
+    {
+     "id": "15641261",
+     "nombre": "Apartamentos Melisa - Madrid",
+     "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2451.71,
+     "lat": 40.381931,
+     "lon": -3.741788,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 8.3,
+     "opiniones": 118
+    },
+    {
+     "id": "17143994",
+     "nombre": "A 2 min del Parque Madrid Río, Terraza, Relax y Vistas",
+     "url": "https://www.booking.com/hotel/es/a-2-min-del-parque-madrid-rio-terraza-relax-y-vistas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3077.02,
+     "lat": 40.38892,
+     "lon": -3.700618,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.0,
+     "opiniones": 1
+    },
+    {
+     "id": "4413970",
+     "nombre": "Apavonia Apartamento 1 dormitorio Distrito Latina Madrid",
+     "url": "https://www.booking.com/hotel/es/el-chato.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3014.44,
+     "lat": 40.403717,
+     "lon": -3.741342,
+     "tipo": "Apartamento",
+     "distrito": "Latina",
+     "nota": 7.9,
+     "opiniones": 65
+    },
+    {
+     "id": "17184348",
+     "nombre": "Parque Emperatriz III · Studio with A/C",
+     "url": "https://www.booking.com/hotel/es/parque-de-la-emperatriz-lll-estudio-para-3-personas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3217.36,
+     "lat": 40.380766,
+     "lon": -3.727381,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.3,
+     "opiniones": 3
+    },
+    {
+     "id": "12520713",
+     "nombre": "Charming San Isidro",
+     "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 2814.88,
+     "lat": 40.396885,
+     "lon": -3.732469,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.4,
+     "opiniones": 42
+    },
+    {
+     "id": "13932159",
+     "nombre": "For You Rentals Acogedor Apartamento de 1 Dormitorio Madrid Temporal MAL72B",
+     "url": "https://www.booking.com/hotel/es/for-you-rentals-acogedor-apartamento-de-1-dormitorio-madrid-temporal-mal72b.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3177.05,
+     "lat": 40.431734,
+     "lon": -3.653736,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.1,
+     "opiniones": 62
+    },
+    {
+     "id": "2875963",
+     "nombre": "Apartamentos Villablino Arturo Soria",
+     "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3374.27,
+     "lat": 40.461284,
+     "lon": -3.661494,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.4,
+     "opiniones": 191
+    },
+    {
+     "id": "6691457",
+     "nombre": "Encantador Apartamento Paseo de la Habana by Batuecas",
+     "url": "https://www.booking.com/hotel/es/encantador-apartamento-paseo-de-la-habana-by-batuecas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 4280.2,
+     "lat": 40.448708,
+     "lon": -3.689014,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 8.8,
+     "opiniones": 15
+    },
+    {
+     "id": "16901909",
+     "nombre": "Copla Liria",
+     "url": "https://www.booking.com/hotel/es/copla-liria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 3894.85,
+     "lat": 40.427282,
+     "lon": -3.713429,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 9.1,
+     "opiniones": 733
+    },
+    {
+     "id": "6692140",
+     "nombre": "Deslumbrante Apartamento en Plaza España, by Batuecas",
+     "url": "https://www.booking.com/hotel/es/deslumbrante-apartamento-en-plaza-espana-by-batuecas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 6014.82,
+     "lat": 40.425033,
+     "lon": -3.713446,
+     "tipo": "Apartamento",
+     "distrito": "Moncloa - Aravaca",
+     "nota": 8.8,
+     "opiniones": 42
+    },
+    {
+     "id": "15894912",
+     "nombre": "Cituspace Alcalá",
+     "url": "https://www.booking.com/hotel/es/cituspace-alcala.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-d13846ce16423da7",
+     "total_usd": 6386.34,
+     "lat": 40.423007,
+     "lon": -3.679351,
+     "tipo": "Apartamento",
+     "distrito": "Salamanca",
+     "nota": 9.5,
+     "opiniones": 41
+    }
+   ]
+  },
+  {
+   "source": "expedia",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "22733540",
+     "nombre": "Apartment in the city center, Lavapiés",
+     "url": "https://www.expedia.com/.h22733540.Hotel-Information?chkin=2027-06-01&chkout=2027-06-22&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=a5057807-a39b-4f7a-aef0-75983450eaf4",
+     "total_usd": 1647,
+     "lat": 40.409558,
+     "lon": -3.700432,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    },
+    {
+     "id": "124963668",
+     "nombre": "Aluche City Suites",
+     "url": "https://www.expedia.com/.h124963668.Hotel-Information?chkin=2027-06-01&chkout=2027-06-22&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=a5057807-a39b-4f7a-aef0-75983450eaf4",
+     "total_usd": 1791,
+     "lat": 40.396252,
+     "lon": -3.757039,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    },
+    {
+     "id": "72403622",
+     "nombre": "21 Gumers Wifi Metro A/C—free street parking for families, friends, and couples.",
+     "url": "https://www.expedia.com/.h72403622.Hotel-Information?chkin=2027-06-01&chkout=2027-06-22&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=a5057807-a39b-4f7a-aef0-75983450eaf4",
+     "total_usd": 2646,
+     "lat": 40.387612,
+     "lon": -3.711919,
+     "tipo": null,
+     "distrito": null,
+     "nota": 4.0,
+     "opiniones": 3
+    },
+    {
+     "id": "126578835",
+     "nombre": "Oceanview Paradise 2BR High-speed Wifi Office Walk to Beach Restaurants Costa Adeje",
+     "url": "https://www.expedia.com/.h126578835.Hotel-Information?chkin=2027-06-01&chkout=2027-06-22&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=a5057807-a39b-4f7a-aef0-75983450eaf4",
+     "total_usd": 2844,
+     "lat": 40.463667,
+     "lon": -3.74922,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    }
+   ]
+  }
+ ],
+ "verificaciones": [
+  {
+   "id": "15496732",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Suite",
+     "m2": 15,
+     "ocupacion_max": 2,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 1951.56,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/sarria-living-la-vaguada-suites.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-7a0ea84a139cea39&highlighted_blocks=1549673203_426188106_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento",
+     "m2": 34,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2429.92,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/sarria-living-la-vaguada-suites.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-7a0ea84a139cea39&highlighted_blocks=1549673201_426188106_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Suite",
+     "m2": 13,
+     "ocupacion_max": 2,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 1951.56,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/sarria-living-la-vaguada-suites.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-7a0ea84a139cea39&highlighted_blocks=1549673202_426188106_0_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "13387849",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": 1,
+   "evidencia": "El apartamento tiene 1 dormitorio, una cocina con nevera y horno, y 2 baños",
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 170,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2533.11,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/atico-con-vistas-en-el-centro-de-la-capital-madrilena.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-cbe90918ef4996dd&highlighted_blocks=1338784901_406314052_4_2_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "15641261",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": 1,
+   "evidencia": "Este apartamento con aire acondicionado consta de 1 dormitorio",
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 29,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2451.71,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-306a81958adb1789&highlighted_blocks=1564126101_429298818_2_0_0"
+      },
+      {
+       "precio_total": 2819.47,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-306a81958adb1789&highlighted_blocks=1564126101_429298818_4_0_0"
+      },
+      {
+       "precio_total": 2696.88,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-306a81958adb1789&highlighted_blocks=1564126101_429298818_3_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "10832758",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Estudio Estándar",
+     "m2": 18,
+     "ocupacion_max": 2,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 2801.49,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-c232bb6bdcb42876&highlighted_blocks=1083275803_381245979_2_0_0"
+      },
+      {
+       "precio_total": 1961.04,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-c232bb6bdcb42876&highlighted_blocks=1083275803_381245714_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Estudio con balcón",
+     "m2": 24,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 2761.94,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-c232bb6bdcb42876&highlighted_blocks=1083275801_381245714_0_0_0"
+      },
+      {
+       "precio_total": 3156.5,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-c232bb6bdcb42876&highlighted_blocks=1083275801_381245714_4_0_0"
+      },
+      {
+       "precio_total": 3945.62,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-c232bb6bdcb42876&highlighted_blocks=1083275801_381245979_4_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "395167",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento de 2 dormitorios con terraza",
+     "m2": 70,
+     "ocupacion_max": 6,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4297.9,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516710_88209049_0_0_0"
+      },
+      {
+       "precio_total": 4524.1,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516710_371282720_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento Superior",
+     "m2": 55,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3611.08,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516713_371282720_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Dúplex de 2 dormitorios",
+     "m2": 70,
+     "ocupacion_max": 6,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4919.12,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516705_371282720_0_0_0"
+      },
+      {
+       "precio_total": 4673.16,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516705_88209049_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 45,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3611.08,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516715_371282720_0_0_0"
+      },
+      {
+       "precio_total": 3430.52,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516715_88209049_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento - Planta baja",
+     "m2": 45,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3611.08,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516714_371282720_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Estudio Superior",
+     "m2": 30,
+     "ocupacion_max": 3,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2931.34,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516711_88209049_0_0_0"
+      },
+      {
+       "precio_total": 3085.63,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516711_371282720_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento Superior de 1 dormitorio",
+     "m2": 45,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3611.08,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516708_371282720_0_0_0"
+      },
+      {
+       "precio_total": 3538.91,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516708_381809046_3_0_0"
+      },
+      {
+       "precio_total": 3430.52,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-37dd94d3248d5155&highlighted_blocks=39516708_88209049_0_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "12520713",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-22",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3972.05,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397716959_2_0_0"
+      },
+      {
+       "precio_total": 4177.99,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397716959_3_0_0"
+      },
+      {
+       "precio_total": 3636.38,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397715916_2_0_0"
+      },
+      {
+       "precio_total": 4048.27,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397715916_4_0_0"
+      },
+      {
+       "precio_total": 4383.93,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397716959_4_0_0"
+      },
+      {
+       "precio_total": 3842.32,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071303_397715916_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Estudio",
+     "m2": 16,
+     "ocupacion_max": 3,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3089.4,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071301_397715916_3_0_0"
+      },
+      {
+       "precio_total": 2883.45,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071301_397715916_2_0_0"
+      },
+      {
+       "precio_total": 3148.29,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071301_397716959_2_0_0"
+      },
+      {
+       "precio_total": 3354.24,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071301_397716959_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 4329.56,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397716959_4_0_0"
+      },
+      {
+       "precio_total": 4123.62,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397716959_3_0_0"
+      },
+      {
+       "precio_total": 3998.56,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397715916_4_0_0"
+      },
+      {
+       "precio_total": 3917.67,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397716959_2_0_0"
+      },
+      {
+       "precio_total": 3792.61,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397715916_3_0_0"
+      },
+      {
+       "precio_total": 3586.67,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-22&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-6abb83691962f1d6&highlighted_blocks=1252071302_397715916_2_0_0"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

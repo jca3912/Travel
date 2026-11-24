@@ -1,0 +1,53 @@
+# ============================================================
+#  pisos — búsqueda de apartamento en Madrid, verano 2027
+#  La rutina del agente está en ESTANCIAS.md.
+# ============================================================
+
+[viaje]
+ciudad        = "Madrid, Spain"
+# Ventana en la que tiene que caer toda la estancia (entrada y salida).
+desde         = "2027-06-01"
+hasta         = "2027-08-01"      # la salida puede ser como muy tarde este día
+
+# Duraciones a comparar. 28 está a propósito: en varias plataformas el
+# descuento mensual empieza a las 28 noches y a veces 4 semanas cuestan
+# lo mismo que 3.
+noches        = [18, 21, 24, 28]
+
+# Se prueba una fecha de entrada cada `paso_dias` días desde `desde`.
+paso_dias     = 7
+
+[huespedes]
+adultos       = 1
+ninos_edades  = [15, 11]          # la de 15 necesita su propio dormitorio
+
+[requisitos]
+dormitorios_min = 2
+# Tope TODO INCLUIDO (tasas, limpieza, comisión) para la estancia completa.
+presupuesto_usd = 3000
+# "Hasta ~30 min de Sol en metro". Se aproxima con distancia en línea recta
+# desde la Puerta del Sol: no es un tiempo de transporte real. Por debajo de
+# km_ok se da por buena; entre km_ok y km_max se marca "revisar transporte";
+# por encima se descarta.
+km_ok         = 6.0
+km_max        = 9.0
+# Superficie a partir de la cual un apartamento sin número de dormitorios
+# conocido se considera "probable 2 dormitorios".
+m2_probable   = 55
+# Por debajo de esto no caben 2 dormitorios: se descarta aunque no lo diga.
+m2_minimo     = 40
+
+[pasada]
+# Ventanas (fecha de entrada × noches) que se buscan cada día. Con 24
+# ventanas y 4 al día, la cobertura completa se renueva cada 6 días.
+ventanas_por_dia   = 4
+# Cuántos candidatos nuevos se verifican a fondo cada día (precio para 3
+# personas y tipo de vivienda). Cada verificación es una llamada más.
+verificaciones_max = 6
+# Una bajada se avisa si el precio cae al menos esto respecto al mínimo
+# anterior de la misma vivienda en la misma ventana.
+bajada_pct         = 0.05
+
+[informe]
+# Enlace fijo del informe publicado (se rellena tras la primera publicación).
+artifact_url = "https://claude.ai/artifact/EpN71VajYXreXUj9MCmWxJ"
