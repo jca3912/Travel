@@ -28,7 +28,7 @@ _NO = [
     (r"\brooms?\b|\bhabitacion(es)?\b|\bcama en\b|\bdormitorio compartido\b|\bshared\b",
      "se alquilan habitaciones, no un piso entero"),
     (r"\bestudio\b|\bstudio\b|\bloft\b", "es un estudio (sin dormitorios separados)"),
-    (r"\b(1|un|uno|one)[ -]?(dormitorio|habitacion|bedroom|bed room|hab)\b|\b1 ?br\b",
+    (r"\b(1|un|uno|one)[ -]?(dormitorio|habitacion|bedroom|bed room|bed|hab)\b|\b1 ?br\b",
      "tiene 1 dormitorio"),
 ]
 # Nombres que hablan de otro sitio (playa, costa, otra ciudad) con coordenadas
@@ -43,8 +43,9 @@ MOTIVO_SOSPECHA = "el nombre habla de otro sitio: anuncio erróneo o sospechoso"
 
 # Señales explícitas de 2 o más dormitorios.
 _SI = re.compile(
-    r"\b([2-9]|dos|tres|cuatro|two|three|four)[ -]?(dormitorios|habitaciones|bedrooms?|"
-    r"bed rooms|hab\.?|br)\b"
+    r"\b([2-9]|dos|tres|cuatro|two|three|four)[ -]?"
+    r"(?:(?:double|doble|dobles|separate|separados|full|private|privados)\s)?"
+    r"(dormitorios|habitaciones|bedrooms?|bed rooms|hab\.?|br)\b"
 )
 _NUM = {"dos": 2, "tres": 3, "cuatro": 4, "two": 2, "three": 3, "four": 4}
 
