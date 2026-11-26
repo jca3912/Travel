@@ -11,7 +11,7 @@ from pathlib import Path
 from . import config as config_mod
 from . import report as report_mod
 from .config import DB_PATH, REPORTS_DIR
-from .ingest import DatosInvalidos, ingest
+from .ingest import DatosInvalidos, cargar_descartes, ingest
 from .plan import plan_de_hoy, plan_verificacion
 from .store import Store
 
@@ -30,6 +30,22 @@ def cmd_plan(cfg, args) -> int:
 def cmd_verificar(cfg, args) -> int:
     with Store(DB_PATH) as store:
         print(json.dumps(plan_verificacion(cfg, store), ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_descartes(cfg, args) -> int:
+    """Sincroniza los descartes del informe (volcado de la colección `descartes`)."""
+    path = Path(args.fichero)
+    try:
+        filas = cargar_descartes(path)
+    except DatosInvalidos as exc:
+        print(f"RECHAZADO, no se ha guardado nada: {exc}", file=sys.stderr)
+        return 2
+    with Store(DB_PATH) as store:
+        store.sustituir_rechazos(filas)
+    print(f"{len(filas)} piso(s) descartado(s) por Julio; quedan fuera de informe, avisos y verificaciones.")
+    for f in filas:
+        print(f"  {f['source']} {f['ext_id']} · {f.get('nombre') or ''}")
     return 0
 
 
@@ -71,7 +87,8 @@ def cmd_resumen(cfg, args) -> int:
         evs = store.q(
             "SELECT e.*, l.name, l.dorm_status, l.dorm_reason, l.km FROM events e "
             "JOIN listings l ON l.source=e.source AND l.ext_id=e.ext_id "
-            "WHERE e.run_date=? ORDER BY e.total_usd", (run,))
+            "WHERE e.run_date=? AND NOT EXISTS (SELECT 1 FROM rechazos r "
+            "WHERE r.source = e.source AND r.ext_id = e.ext_id) ORDER BY e.total_usd", (run,))
         s = store.one("SELECT COUNT(*) n, SUM(ok=0) f FROM searches WHERE run_date=?", (run,))
     degradado = s["n"] and (s["f"] or 0) / s["n"] > 0.30
     if not evs and not degradado:
@@ -103,6 +120,8 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("plan", help="ventanas y llamadas de hoy (JSON)")
     s.add_argument("--fecha")
     sub.add_parser("verificar", help="viviendas a verificar tras cargar las búsquedas (JSON)")
+    s = sub.add_parser("descartes", help="sincroniza los pisos descartados desde el informe")
+    s.add_argument("fichero")
     s = sub.add_parser("ingest", help="carga el JSON de la pasada")
     s.add_argument("fichero")
     s = sub.add_parser("report", help="genera el informe")
@@ -112,5 +131,5 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--fecha")
     args = p.parse_args(argv)
     cfg = config_mod.load()
-    return {"plan": cmd_plan, "verificar": cmd_verificar, "ingest": cmd_ingest, "report": cmd_report,
+    return {"plan": cmd_plan, "verificar": cmd_verificar, "descartes": cmd_descartes, "ingest": cmd_ingest, "report": cmd_report,
             "resumen": cmd_resumen}[args.cmd](cfg, args)

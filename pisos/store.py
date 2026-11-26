@@ -73,6 +73,18 @@ CREATE TABLE IF NOT EXISTS events (
     price_kind  TEXT NOT NULL DEFAULT 'busqueda'
 );
 
+-- Pisos que Julio ha descartado desde el informe. Es un reflejo exacto de la
+-- colección `descartes` del artifact: se sustituye entera en cada sincronización,
+-- así que "Recuperar" en el informe también se propaga.
+CREATE TABLE IF NOT EXISTS rechazos (
+    source      TEXT NOT NULL,
+    ext_id      TEXT NOT NULL,
+    nombre      TEXT,
+    motivo      TEXT,
+    at          TEXT,
+    PRIMARY KEY (source, ext_id)
+);
+
 CREATE TABLE IF NOT EXISTS runs (
     run_date    TEXT PRIMARY KEY,
     ingested_at TEXT NOT NULL,
@@ -107,6 +119,17 @@ class Store:
         return cur.lastrowid or 0
 
     # ----------------------------------------------------------- consultas
+
+    # Condición SQL para excluir lo descartado; espera el alias `l` en listings.
+    NO_RECHAZADO = ("NOT EXISTS (SELECT 1 FROM rechazos r "
+                    "WHERE r.source = l.source AND r.ext_id = l.ext_id)")
+
+    def sustituir_rechazos(self, filas: list[dict]) -> None:
+        self.x("DELETE FROM rechazos")
+        for f in filas:
+            self.x("INSERT OR REPLACE INTO rechazos (source, ext_id, nombre, motivo, at) "
+                   "VALUES (?,?,?,?,?)",
+                   (f["source"], f["ext_id"], f.get("nombre"), f.get("motivo"), f.get("at")))
 
     def listing(self, source: str, ext_id: str) -> sqlite3.Row | None:
         return self.one("SELECT * FROM listings WHERE source=? AND ext_id=?", (source, ext_id))

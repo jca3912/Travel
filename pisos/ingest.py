@@ -247,6 +247,7 @@ def _detectar_eventos(store: Store, cfg: Config, run_date: str) -> list[dict]:
         SELECT o.*, l.name, l.first_seen, l.dorm_status, l.km
         FROM observations o JOIN listings l ON l.source=o.source AND l.ext_id=o.ext_id
         WHERE o.run_date=? AND l.dorm_status != ? AND (l.km IS NULL OR l.km <= ?)
+          AND NOT EXISTS (SELECT 1 FROM rechazos r WHERE r.source = l.source AND r.ext_id = l.ext_id)
         """,
         (run_date, cl.DESCARTADO, cfg.km_max),
     )
@@ -344,3 +345,38 @@ def ingest(cfg: Config, store: Store, path: Path) -> Resumen:
         (run_date, datetime.now(timezone.utc).isoformat(timespec="seconds"), path.name),
     )
     return resumen
+
+
+# ----------------------------------------------------------------- descartes
+
+def cargar_descartes(path: Path) -> list[dict]:
+    """Lee el volcado de la colección `descartes` del informe.
+
+    Acepta una lista de documentos con `source`, `ext_id` (y opcionalmente
+    `nombre`, `motivo`, `at`), o el objeto `{"docs": [...]}`; cada documento
+    puede venir envuelto como `{"id": ..., "data": {...}}`. Los valores vienen
+    de lo que se pulsó en la página: se validan, no se interpretan.
+    """
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise DatosInvalidos(f"{path.name}: no se puede leer ({exc})") from exc
+    docs = raw.get("docs", raw.get("documents")) if isinstance(raw, dict) else raw
+    if not isinstance(docs, list):
+        raise DatosInvalidos(f"{path.name}: se esperaba una lista de descartes")
+    filas: dict[tuple[str, str], dict] = {}
+    for i, d in enumerate(docs):
+        if isinstance(d, dict) and isinstance(d.get("data"), dict):
+            d = d["data"]
+        if not isinstance(d, dict):
+            raise DatosInvalidos(f"descartes[{i}]: no es un objeto")
+        src, ext = d.get("source"), str(d.get("ext_id") or "").strip()
+        if src not in FUENTES or not re.fullmatch(r"[0-9A-Za-z_-]{1,40}", ext):
+            raise DatosInvalidos(f"descartes[{i}]: fuente o id no válidos ({src!r}, {ext!r})")
+        filas[(src, ext)] = {
+            "source": src, "ext_id": ext,
+            "nombre": str(d.get("nombre") or "")[:200] or None,
+            "motivo": str(d.get("motivo") or "")[:200] or None,
+            "at": str(d.get("at") or "")[:40] or None,
+        }
+    return list(filas.values())

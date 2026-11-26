@@ -121,6 +121,7 @@ def candidatos_a_verificar(cfg: Config, store: Store) -> list[dict]:
           ON o.source = l.source AND o.ext_id = l.ext_id AND o.price_kind = 'busqueda'
         WHERE l.source = 'booking' AND l.verified_at IS NULL
           AND l.dorm_status != ? AND (l.km IS NULL OR l.km <= ?)
+          AND NOT EXISTS (SELECT 1 FROM rechazos r WHERE r.source = l.source AND r.ext_id = l.ext_id)
         GROUP BY l.ext_id
         HAVING p <= ?
         ORDER BY p

@@ -188,6 +188,28 @@ with Store(db) as st:
          "resultados": [bk("200", "Apartamento de 2 dormitorios Usera", 2390)]}], nombre="c.json"))
     check("una bajada de <5 % no avisa", r.eventos == [], str(r.eventos))
 
+print("descartes desde el informe")
+from pisos.ingest import cargar_descartes  # noqa: E402
+with Store(db) as st:
+    f = TMP / "desc.json"
+    f.write_text(json.dumps([{"id": "booking-200", "data": {"source": "booking", "ext_id": "200",
+                                                            "nombre": "Usera", "at": "2026-11-26T10:00:00Z"}}]))
+    st.sustituir_rechazos(cargar_descartes(f))
+    check("el descartado sale de 'mejores'", "200" not in {m["ext_id"] for m in report_mod._mejores(cfg, st)})
+    check("y no vuelve a verificarse", "200" not in {c["id"] for c in candidatos_a_verificar(cfg, st)})
+    r = ingest(cfg, st, run("2026-11-30", [
+        {"source": "booking", "checkin": "2027-06-07", "checkout": "2027-06-28", "ok": True,
+         "resultados": [bk("200", "Apartamento de 2 dormitorios Usera", 1900)]}], nombre="d.json"))
+    check("ni avisa de una bajada", r.eventos == [], str(r.eventos))
+    st.sustituir_rechazos([])
+    check("«Recuperar» lo devuelve", "200" in {m["ext_id"] for m in report_mod._mejores(cfg, st)})
+    f.write_text(json.dumps([{"source": "booking", "ext_id": "../x"}]))
+    try:
+        cargar_descartes(f)
+        check("rechaza ids raros", False)
+    except DatosInvalidos:
+        check("rechaza ids raros", True)
+
 print()
 if fallos:
     print(f"{len(fallos)} fallo(s): {', '.join(fallos)}")
