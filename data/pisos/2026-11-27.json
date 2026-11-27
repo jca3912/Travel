@@ -1,0 +1,1697 @@
+{
+ "run_date": "2026-11-27",
+ "busquedas": [
+  {
+   "source": "booking",
+   "checkin": "2027-06-22",
+   "checkout": "2027-07-20",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "13614206",
+     "nombre": "AeroSuites202 Alojamiento Madrid",
+     "url": "https://www.booking.com/hotel/es/aerosuites202-alojamiento-madrid.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2633.76,
+     "lat": 40.474682,
+     "lon": -3.580974,
+     "tipo": "Apartamento",
+     "distrito": "Barajas",
+     "nota": 8.4,
+     "opiniones": 22
+    },
+    {
+     "id": "395167",
+     "nombre": "Apartamentos Adelfas",
+     "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3094.99,
+     "lat": 40.401747,
+     "lon": -3.668979,
+     "tipo": "Apartamento",
+     "distrito": "Retiro",
+     "nota": 7.9,
+     "opiniones": 406
+    },
+    {
+     "id": "12546779",
+     "nombre": "Río Manzanares - Apartamento de 1 dormitorio",
+     "url": "https://www.booking.com/hotel/es/charming-almendrales.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2725.72,
+     "lat": 40.381461,
+     "lon": -3.702266,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.6,
+     "opiniones": 61
+    },
+    {
+     "id": "13387849",
+     "nombre": "Tejado de Antigua Fábrica Industrial en Acacias",
+     "url": "https://www.booking.com/hotel/es/atico-con-vistas-en-el-centro-de-la-capital-madrilena.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3092.27,
+     "lat": 40.403044,
+     "lon": -3.704731,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 69
+    },
+    {
+     "id": "11762674",
+     "nombre": "Apartamentos Cuerda Larga",
+     "url": "https://www.booking.com/hotel/es/apartamentos-cuerda-larga.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2210.16,
+     "lat": 40.748376,
+     "lon": -3.784489,
+     "tipo": "Apartamento",
+     "distrito": null,
+     "nota": 9.4,
+     "opiniones": 248
+    },
+    {
+     "id": "14965759",
+     "nombre": "Apartamentos Acogedores - Nuevo a estrenar",
+     "url": "https://www.booking.com/hotel/es/apartamentos-acogedores-nuevo-a-estrenar-a26.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2859.72,
+     "lat": 40.463932,
+     "lon": -3.712628,
+     "tipo": "Apartamento",
+     "distrito": "Moncloa - Aravaca",
+     "nota": 9,
+     "opiniones": 214
+    },
+    {
+     "id": "13953104",
+     "nombre": "habitación con 2 ventanas al exterior",
+     "url": "https://www.booking.com/hotel/es/estudio-de-tres-camas-con-2-ventanas-al-exterior.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3295.91,
+     "lat": 40.403556,
+     "lon": -3.705141,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 117
+    },
+    {
+     "id": "4413970",
+     "nombre": "Apavonia Apartamento 1 dormitorio Distrito Latina Madrid",
+     "url": "https://www.booking.com/hotel/es/el-chato.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3095.35,
+     "lat": 40.403717,
+     "lon": -3.741342,
+     "tipo": "Apartamento",
+     "distrito": "Latina",
+     "nota": 7.9,
+     "opiniones": 65
+    },
+    {
+     "id": "11479829",
+     "nombre": "Puerta de Hierro Apartments",
+     "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2879.92,
+     "lat": 40.47553,
+     "lon": -3.741558,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 7.3,
+     "opiniones": 422
+    },
+    {
+     "id": "17143994",
+     "nombre": "A 2 min del Parque Madrid Río, Terraza, Relax y Vistas",
+     "url": "https://www.booking.com/hotel/es/a-2-min-del-parque-madrid-rio-terraza-relax-y-vistas.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3125.62,
+     "lat": 40.38892,
+     "lon": -3.700618,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7,
+     "opiniones": 1
+    },
+    {
+     "id": "14977117",
+     "nombre": "Plaza Donoso Apartment",
+     "url": "https://www.booking.com/hotel/es/plaza-donoso-apartment-2.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 2998.32,
+     "lat": 40.469067,
+     "lon": -3.697981,
+     "tipo": "Apartamento",
+     "distrito": "Tetuán",
+     "nota": null,
+     "opiniones": null
+    },
+    {
+     "id": "12520713",
+     "nombre": "Charming San Isidro",
+     "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3083.49,
+     "lat": 40.396885,
+     "lon": -3.732469,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.4,
+     "opiniones": 42
+    },
+    {
+     "id": "2875963",
+     "nombre": "Apartamentos Villablino Arturo Soria",
+     "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 4355.69,
+     "lat": 40.461284,
+     "lon": -3.661494,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.4,
+     "opiniones": 191
+    },
+    {
+     "id": "16901909",
+     "nombre": "Copla Liria",
+     "url": "https://www.booking.com/hotel/es/copla-liria.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 4048.74,
+     "lat": 40.427282,
+     "lon": -3.713429,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 9,
+     "opiniones": 755
+    },
+    {
+     "id": "7946677",
+     "nombre": "Atocha II · Bright, 2 bedrooms and A/C",
+     "url": "https://www.booking.com/hotel/es/charming-atocha-ii.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 4182.85,
+     "lat": 40.405867,
+     "lon": -3.694287,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7,
+     "opiniones": 6
+    },
+    {
+     "id": "9399281",
+     "nombre": "Apartment in monumental square Madrid Center",
+     "url": "https://www.booking.com/hotel/es/apartment-in-the-historical-plaza-de-la-villa-madrid1.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 4783.67,
+     "lat": 40.415457,
+     "lon": -3.710204,
+     "tipo": "Apartamento",
+     "distrito": "Austrias",
+     "nota": 9.1,
+     "opiniones": 207
+    },
+    {
+     "id": "17031267",
+     "nombre": "Welcomer Apartments Gran Vía",
+     "url": "https://www.booking.com/hotel/es/welcomer-apartments-gran-via.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 5501.96,
+     "lat": 40.419396,
+     "lon": -3.700476,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 8,
+     "opiniones": 41
+    },
+    {
+     "id": "90899",
+     "nombre": "Apartamentos G3 Galeon",
+     "url": "https://www.booking.com/hotel/es/quogaleon.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 3547.15,
+     "lat": 40.458786,
+     "lon": -3.699269,
+     "tipo": "Apartahotel",
+     "distrito": "Tetuán",
+     "nota": 8.3,
+     "opiniones": 897
+    },
+    {
+     "id": "4004467",
+     "nombre": "Beautiful Apartment next to Santiago Bernabeu by Batuecas",
+     "url": "https://www.booking.com/hotel/es/beautiful-apartment-next-to-santiago-bernabeu.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 4745.7,
+     "lat": 40.448849,
+     "lon": -3.688833,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 9,
+     "opiniones": 37
+    },
+    {
+     "id": "17104075",
+     "nombre": "Housing Castilla by Sharing Co",
+     "url": "https://www.booking.com/hotel/es/housing-castilla-by-sharing-co.html?aid=8132308&checkin=2027-06-22&checkout=2027-07-20&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-40c8df7e2bf528a9",
+     "total_usd": 7868.29,
+     "lat": 40.445429,
+     "lon": -3.695416,
+     "tipo": "Apartamento",
+     "distrito": "Chamberí",
+     "nota": 9.7,
+     "opiniones": 20
+    }
+   ]
+  },
+  {
+   "source": "expedia",
+   "checkin": "2027-06-22",
+   "checkout": "2027-07-20",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "22733540",
+     "nombre": "Apartment in the city center, Lavapiés",
+     "url": "https://www.expedia.com/.h22733540.Hotel-Information?chkin=2027-06-22&chkout=2027-07-20&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=172cb2bd-9bac-455c-af37-41c8eafcc6e2",
+     "total_usd": 1760,
+     "lat": 40.409558,
+     "lon": -3.700432,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    },
+    {
+     "id": "124963668",
+     "nombre": "Aluche City Suites",
+     "url": "https://www.expedia.com/.h124963668.Hotel-Information?chkin=2027-06-22&chkout=2027-07-20&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=172cb2bd-9bac-455c-af37-41c8eafcc6e2",
+     "total_usd": 2364,
+     "lat": 40.396252,
+     "lon": -3.757039,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    }
+   ]
+  },
+  {
+   "source": "booking",
+   "checkin": "2027-06-29",
+   "checkout": "2027-07-27",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "13614206",
+     "nombre": "AeroSuites202 Alojamiento Madrid",
+     "url": "https://www.booking.com/hotel/es/aerosuites202-alojamiento-madrid.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2514.04,
+     "lat": 40.474682,
+     "lon": -3.580974,
+     "tipo": "Apartamento",
+     "distrito": "Barajas",
+     "nota": 8.4,
+     "opiniones": 22
+    },
+    {
+     "id": "12546779",
+     "nombre": "Río Manzanares - Apartamento de 1 dormitorio",
+     "url": "https://www.booking.com/hotel/es/charming-almendrales.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2335.79,
+     "lat": 40.381461,
+     "lon": -3.702266,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.6,
+     "opiniones": 61
+    },
+    {
+     "id": "395167",
+     "nombre": "Apartamentos Adelfas",
+     "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3252.5,
+     "lat": 40.401747,
+     "lon": -3.668979,
+     "tipo": "Apartamento",
+     "distrito": "Retiro",
+     "nota": 7.9,
+     "opiniones": 406
+    },
+    {
+     "id": "17040382",
+     "nombre": "Tu Casa Bonita en Avenida de América",
+     "url": "https://www.booking.com/hotel/es/tu-casa-bonita-america-suites.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3190.83,
+     "lat": 40.44721,
+     "lon": -3.652357,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 8.1,
+     "opiniones": 365
+    },
+    {
+     "id": "7847147",
+     "nombre": "Charming Studio Avenida América · For 3",
+     "url": "https://www.booking.com/hotel/es/avda-de-america.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3269.98,
+     "lat": 40.441293,
+     "lon": -3.672802,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 7.7,
+     "opiniones": 57
+    },
+    {
+     "id": "6436486",
+     "nombre": "Acogedor estudio en Cuatro Caminos by beBalmy",
+     "url": "https://www.booking.com/hotel/es/acogedor-estudio-en-cuatro-caminos.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3233.71,
+     "lat": 40.448203,
+     "lon": -3.704149,
+     "tipo": "Apartamento",
+     "distrito": "Tetuán",
+     "nota": 7.9,
+     "opiniones": 96
+    },
+    {
+     "id": "9133357",
+     "nombre": "Precioso apartamento en Puente Vallecas, Madrid.",
+     "url": "https://www.booking.com/hotel/es/precioso-apartamento-en-puente-vallecas-madrid-madrid.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3313.85,
+     "lat": 40.392434,
+     "lon": -3.656462,
+     "tipo": "Apartamento",
+     "distrito": "Puente de Vallecas",
+     "nota": 9.5,
+     "opiniones": 188
+    },
+    {
+     "id": "14395580",
+     "nombre": "Naffah Apartments I",
+     "url": "https://www.booking.com/hotel/es/naffah-apartments-i-amp-ii.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3295.44,
+     "lat": 40.421122,
+     "lon": -3.630962,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.8,
+     "opiniones": 15
+    },
+    {
+     "id": "17456964",
+     "nombre": "Diseño Único Cama King AC cerca del metro Herrera Oria",
+     "url": "https://www.booking.com/hotel/es/diseno-unico-cama-king-ac-cerca-del-metro-herrera-oria.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2740.87,
+     "lat": 40.481436,
+     "lon": -3.711643,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 8.5,
+     "opiniones": 2
+    },
+    {
+     "id": "11762674",
+     "nombre": "Apartamentos Cuerda Larga",
+     "url": "https://www.booking.com/hotel/es/apartamentos-cuerda-larga.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2210.16,
+     "lat": 40.748376,
+     "lon": -3.784489,
+     "tipo": "Apartamento",
+     "distrito": null,
+     "nota": 9.4,
+     "opiniones": 248
+    },
+    {
+     "id": "11524356",
+     "nombre": "Charming Almudena",
+     "url": "https://www.booking.com/hotel/es/charming-almudena.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3287.5,
+     "lat": 40.412986,
+     "lon": -3.712778,
+     "tipo": "Apartahotel",
+     "distrito": "Centro de Madrid",
+     "nota": 8.1,
+     "opiniones": 24
+    },
+    {
+     "id": "14965759",
+     "nombre": "Apartamentos Acogedores - Nuevo a estrenar",
+     "url": "https://www.booking.com/hotel/es/apartamentos-acogedores-nuevo-a-estrenar-a26.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2692.12,
+     "lat": 40.463932,
+     "lon": -3.712628,
+     "tipo": "Apartamento",
+     "distrito": "Moncloa - Aravaca",
+     "nota": 9,
+     "opiniones": 214
+    },
+    {
+     "id": "17359686",
+     "nombre": "Cozy Studio Vistalegre",
+     "url": "https://www.booking.com/hotel/es/cozy-studio-vistalegre-i.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3068.33,
+     "lat": 40.384887,
+     "lon": -3.742314,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 9.2,
+     "opiniones": 8
+    },
+    {
+     "id": "10150214",
+     "nombre": "Modern studio - Av. de América",
+     "url": "https://www.booking.com/hotel/es/1-bedroom-1-bathroom-furnished-av-de-america-studio-mintystay.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3177,
+     "lat": 40.442584,
+     "lon": -3.671181,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 7.6,
+     "opiniones": 39
+    },
+    {
+     "id": "11497889",
+     "nombre": "Housing Simancas by SharingCo",
+     "url": "https://www.booking.com/hotel/es/simancas-por-sharingco.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2989.89,
+     "lat": 40.465478,
+     "lon": -3.695116,
+     "tipo": "Apartamento",
+     "distrito": "Tetuán",
+     "nota": 8,
+     "opiniones": 343
+    },
+    {
+     "id": "15829737",
+     "nombre": "Apartahotel Quo Eraso",
+     "url": "https://www.booking.com/hotel/es/apartahotel-quo-eraso-madrid.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3305.09,
+     "lat": 40.433898,
+     "lon": -3.671886,
+     "tipo": "Apartahotel",
+     "distrito": "Salamanca",
+     "nota": 8.5,
+     "opiniones": 851
+    },
+    {
+     "id": "13100556",
+     "nombre": "HOMEABOUT SMART ROOMS Tetuán - SIN RECEPCIÓN",
+     "url": "https://www.booking.com/hotel/es/homeabout-apartamentos-bravo-murillo.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2736.22,
+     "lat": 40.459407,
+     "lon": -3.703022,
+     "tipo": "Apartamento",
+     "distrito": "Tetuán",
+     "nota": 7.3,
+     "opiniones": 658
+    },
+    {
+     "id": "15550450",
+     "nombre": "Renovated apartment 15 minutes from Sol",
+     "url": "https://www.booking.com/hotel/es/renovated-apartment-15-minutes-from-sol.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3052.77,
+     "lat": 40.395846,
+     "lon": -3.670226,
+     "tipo": "Apartamento",
+     "distrito": "Puente de Vallecas",
+     "nota": null,
+     "opiniones": null
+    },
+    {
+     "id": "12208362",
+     "nombre": "Villa de Vallecas - En el barrio Numancia",
+     "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 2344.09,
+     "lat": 40.392082,
+     "lon": -3.664162,
+     "tipo": "Apartamento",
+     "distrito": "Puente de Vallecas",
+     "nota": 7.4,
+     "opiniones": 24
+    },
+    {
+     "id": "13953104",
+     "nombre": "habitación con 2 ventanas al exterior",
+     "url": "https://www.booking.com/hotel/es/estudio-de-tres-camas-con-2-ventanas-al-exterior.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b0ea65531adff38d",
+     "total_usd": 3295.91,
+     "lat": 40.403556,
+     "lon": -3.705141,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 117
+    }
+   ]
+  },
+  {
+   "source": "expedia",
+   "checkin": "2027-06-29",
+   "checkout": "2027-07-27",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "22733540",
+     "nombre": "Apartment in the city center, Lavapiés",
+     "url": "https://www.expedia.com/.h22733540.Hotel-Information?chkin=2027-06-29&chkout=2027-07-27&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=31364745-5d90-4fa2-94ec-7a6abf9d9b58",
+     "total_usd": 1760,
+     "lat": 40.409558,
+     "lon": -3.700432,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    },
+    {
+     "id": "124963668",
+     "nombre": "Aluche City Suites",
+     "url": "https://www.expedia.com/.h124963668.Hotel-Information?chkin=2027-06-29&chkout=2027-07-27&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=31364745-5d90-4fa2-94ec-7a6abf9d9b58",
+     "total_usd": 2364,
+     "lat": 40.396252,
+     "lon": -3.757039,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    }
+   ]
+  },
+  {
+   "source": "booking",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-19",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "395167",
+     "nombre": "Apartamentos Adelfas",
+     "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2292.7,
+     "lat": 40.401747,
+     "lon": -3.668979,
+     "tipo": "Apartamento",
+     "distrito": "Retiro",
+     "nota": 7.9,
+     "opiniones": 406
+    },
+    {
+     "id": "2875963",
+     "nombre": "Apartamentos Villablino Arturo Soria",
+     "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2904.68,
+     "lat": 40.461284,
+     "lon": -3.661494,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.4,
+     "opiniones": 191
+    },
+    {
+     "id": "13387849",
+     "nombre": "Tejado de Antigua Fábrica Industrial en Acacias",
+     "url": "https://www.booking.com/hotel/es/atico-con-vistas-en-el-centro-de-la-capital-madrilena.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 1987.89,
+     "lat": 40.403044,
+     "lon": -3.704731,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 69
+    },
+    {
+     "id": "15829737",
+     "nombre": "Apartahotel Quo Eraso",
+     "url": "https://www.booking.com/hotel/es/apartahotel-quo-eraso-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3126.16,
+     "lat": 40.433898,
+     "lon": -3.671886,
+     "tipo": "Apartahotel",
+     "distrito": "Salamanca",
+     "nota": 8.5,
+     "opiniones": 851
+    },
+    {
+     "id": "15837006",
+     "nombre": "Enorme ! Salamanca 3 bedrooms 2 bathrooms",
+     "url": "https://www.booking.com/hotel/es/enorme-salamanca-3-bedrooms-2-bathrooms.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3001.89,
+     "lat": 40.431415,
+     "lon": -3.678097,
+     "tipo": "Apartamento",
+     "distrito": "Salamanca",
+     "nota": 9,
+     "opiniones": 1
+    },
+    {
+     "id": "1285322",
+     "nombre": "Apartamento Silvela",
+     "url": "https://www.booking.com/hotel/es/apartamento-silvela.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3028.47,
+     "lat": 40.434407,
+     "lon": -3.673302,
+     "tipo": "Apartamento",
+     "distrito": "Salamanca",
+     "nota": 8.8,
+     "opiniones": 27
+    },
+    {
+     "id": "11867397",
+     "nombre": "Charming Madrid Airport V · Pool and parking",
+     "url": "https://www.booking.com/hotel/es/charming-airport-v.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3292.28,
+     "lat": 40.443594,
+     "lon": -3.584455,
+     "tipo": "Apartamento",
+     "distrito": "San Blas",
+     "nota": 7.4,
+     "opiniones": 58
+    },
+    {
+     "id": "14872715",
+     "nombre": "NUEVO Amplio dúplex en la zona del Palacio de Vista Alegre",
+     "url": "https://www.booking.com/hotel/es/nuevo-amplio-duplex-en-la-zona-del-palacio-de-vista-alegre.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3276.29,
+     "lat": 40.386744,
+     "lon": -3.737941,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": null,
+     "opiniones": null
+    },
+    {
+     "id": "17456964",
+     "nombre": "Diseño Único Cama King AC cerca del metro Herrera Oria",
+     "url": "https://www.booking.com/hotel/es/diseno-unico-cama-king-ac-cerca-del-metro-herrera-oria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3125.47,
+     "lat": 40.481436,
+     "lon": -3.711643,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 8.5,
+     "opiniones": 2
+    },
+    {
+     "id": "11880200",
+     "nombre": "Madrid Villaverde - Apartamentos acogedores, AC",
+     "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2758.27,
+     "lat": 40.349565,
+     "lon": -3.688856,
+     "tipo": "Apartamento",
+     "distrito": "Villaverde",
+     "nota": 8.2,
+     "opiniones": 327
+    },
+    {
+     "id": "10832758",
+     "nombre": "TravelStay General Ricardos",
+     "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2187.22,
+     "lat": 40.392652,
+     "lon": -3.725399,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.6,
+     "opiniones": 604
+    },
+    {
+     "id": "12546779",
+     "nombre": "Río Manzanares - Apartamento de 1 dormitorio",
+     "url": "https://www.booking.com/hotel/es/charming-almendrales.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2549.39,
+     "lat": 40.381461,
+     "lon": -3.702266,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.6,
+     "opiniones": 61
+    },
+    {
+     "id": "15496732",
+     "nombre": "Sarria Living La Vaguada Suites",
+     "url": "https://www.booking.com/hotel/es/sarria-living-la-vaguada-suites.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2808.35,
+     "lat": 40.475057,
+     "lon": -3.71427,
+     "tipo": "Apartahotel",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 8.5,
+     "opiniones": 137
+    },
+    {
+     "id": "4413970",
+     "nombre": "Apavonia Apartamento 1 dormitorio Distrito Latina Madrid",
+     "url": "https://www.booking.com/hotel/es/el-chato.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2973.87,
+     "lat": 40.403717,
+     "lon": -3.741342,
+     "tipo": "Apartamento",
+     "distrito": "Latina",
+     "nota": 7.9,
+     "opiniones": 65
+    },
+    {
+     "id": "15641261",
+     "nombre": "Apartamentos Melisa - Madrid",
+     "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2109.2,
+     "lat": 40.381931,
+     "lon": -3.741788,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 8.3,
+     "opiniones": 118
+    },
+    {
+     "id": "7847147",
+     "nombre": "Charming Studio Avenida América · For 3",
+     "url": "https://www.booking.com/hotel/es/avda-de-america.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 3312.5,
+     "lat": 40.441293,
+     "lon": -3.672802,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 7.7,
+     "opiniones": 57
+    },
+    {
+     "id": "17184348",
+     "nombre": "Parque Emperatriz III · Studio with A/C",
+     "url": "https://www.booking.com/hotel/es/parque-de-la-emperatriz-lll-estudio-para-3-personas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2870.01,
+     "lat": 40.380766,
+     "lon": -3.727381,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.3,
+     "opiniones": 3
+    },
+    {
+     "id": "9843454",
+     "nombre": "Apartamentos Marquesado",
+     "url": "https://www.booking.com/hotel/es/apartamentos-marquesado.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2660.68,
+     "lat": 40.333436,
+     "lon": -3.702781,
+     "tipo": "Apartamento",
+     "distrito": "Villaverde",
+     "nota": 7.3,
+     "opiniones": 298
+    },
+    {
+     "id": "11479829",
+     "nombre": "Puerta de Hierro Apartments",
+     "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2520.24,
+     "lat": 40.47553,
+     "lon": -3.741558,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 7.3,
+     "opiniones": 422
+    },
+    {
+     "id": "17143994",
+     "nombre": "A 2 min del Parque Madrid Río, Terraza, Relax y Vistas",
+     "url": "https://www.booking.com/hotel/es/a-2-min-del-parque-madrid-rio-terraza-relax-y-vistas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-b8dd23e179dfdef3",
+     "total_usd": 2733.09,
+     "lat": 40.38892,
+     "lon": -3.700618,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7,
+     "opiniones": 1
+    }
+   ]
+  },
+  {
+   "source": "expedia",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-19",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "72403622",
+     "nombre": "21 Gumers Wifi Metro A/C—free street parking for families, friends, and couples.",
+     "url": "https://www.expedia.com/.h72403622.Hotel-Information?chkin=2027-06-01&chkout=2027-06-19&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=f3504a63-cc7d-4de6-81e7-b31bf70ae514",
+     "total_usd": 2283,
+     "lat": 40.387612,
+     "lon": -3.711919,
+     "tipo": null,
+     "distrito": null,
+     "nota": 4.0,
+     "opiniones": 3
+    },
+    {
+     "id": "126578835",
+     "nombre": "Oceanview Paradise 2BR High-speed Wifi Office Walk to Beach Restaurants Costa Adeje",
+     "url": "https://www.expedia.com/.h126578835.Hotel-Information?chkin=2027-06-01&chkout=2027-06-19&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=f3504a63-cc7d-4de6-81e7-b31bf70ae514",
+     "total_usd": 2469,
+     "lat": 40.463667,
+     "lon": -3.74922,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    }
+   ]
+  },
+  {
+   "source": "booking",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-25",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "395167",
+     "nombre": "Apartamentos Adelfas",
+     "url": "https://www.booking.com/hotel/es/apartamentos-adelfdas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3020.91,
+     "lat": 40.401747,
+     "lon": -3.668979,
+     "tipo": "Apartamento",
+     "distrito": "Retiro",
+     "nota": 7.9,
+     "opiniones": 406
+    },
+    {
+     "id": "13387849",
+     "nombre": "Tejado de Antigua Fábrica Industrial en Acacias",
+     "url": "https://www.booking.com/hotel/es/atico-con-vistas-en-el-centro-de-la-capital-madrilena.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 2650.52,
+     "lat": 40.403044,
+     "lon": -3.704731,
+     "tipo": "Apartamento",
+     "distrito": "Arganzuela",
+     "nota": 7.7,
+     "opiniones": 69
+    },
+    {
+     "id": "12546779",
+     "nombre": "Río Manzanares - Apartamento de 1 dormitorio",
+     "url": "https://www.booking.com/hotel/es/charming-almendrales.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3204.05,
+     "lat": 40.381461,
+     "lon": -3.702266,
+     "tipo": "Apartamento",
+     "distrito": "Usera",
+     "nota": 7.6,
+     "opiniones": 61
+    },
+    {
+     "id": "10832758",
+     "nombre": "TravelStay General Ricardos",
+     "url": "https://www.booking.com/hotel/es/travelstep-general-ricardos.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 2891.15,
+     "lat": 40.392652,
+     "lon": -3.725399,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.6,
+     "opiniones": 604
+    },
+    {
+     "id": "15641261",
+     "nombre": "Apartamentos Melisa - Madrid",
+     "url": "https://www.booking.com/hotel/es/apartamentos-melisa-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 2795.08,
+     "lat": 40.381931,
+     "lon": -3.741788,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 8.3,
+     "opiniones": 118
+    },
+    {
+     "id": "9843454",
+     "nombre": "Apartamentos Marquesado",
+     "url": "https://www.booking.com/hotel/es/apartamentos-marquesado.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3191.1,
+     "lat": 40.333436,
+     "lon": -3.702781,
+     "tipo": "Apartamento",
+     "distrito": "Villaverde",
+     "nota": 7.3,
+     "opiniones": 298
+    },
+    {
+     "id": "11479829",
+     "nombre": "Puerta de Hierro Apartments",
+     "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3151.8,
+     "lat": 40.47553,
+     "lon": -3.741558,
+     "tipo": "Apartamento",
+     "distrito": "Fuencarral - El Pardo",
+     "nota": 7.3,
+     "opiniones": 422
+    },
+    {
+     "id": "12520713",
+     "nombre": "Charming San Isidro",
+     "url": "https://www.booking.com/hotel/es/charming-bautista.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3203.86,
+     "lat": 40.396885,
+     "lon": -3.732469,
+     "tipo": "Apartamento",
+     "distrito": "Carabanchel",
+     "nota": 7.4,
+     "opiniones": 42
+    },
+    {
+     "id": "2875963",
+     "nombre": "Apartamentos Villablino Arturo Soria",
+     "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3834.99,
+     "lat": 40.461284,
+     "lon": -3.661494,
+     "tipo": "Apartamento",
+     "distrito": "Ciudad Lineal",
+     "nota": 7.4,
+     "opiniones": 191
+    },
+    {
+     "id": "6691457",
+     "nombre": "Encantador Apartamento Paseo de la Habana by Batuecas",
+     "url": "https://www.booking.com/hotel/es/encantador-apartamento-paseo-de-la-habana-by-batuecas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 4783.01,
+     "lat": 40.448708,
+     "lon": -3.689014,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 8.8,
+     "opiniones": 15
+    },
+    {
+     "id": "6691956",
+     "nombre": "Extraordinario Apartamento en Palacio Real - Centro Calle ilustración by Batuecas",
+     "url": "https://www.booking.com/hotel/es/extraordinario-apartamento-en-palacio-real-centro-calle-ilustracion-by-batuecas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 4990.2,
+     "lat": 40.421278,
+     "lon": -3.716802,
+     "tipo": "Apartamento",
+     "distrito": "Moncloa - Aravaca",
+     "nota": 7.4,
+     "opiniones": 14
+    },
+    {
+     "id": "16901909",
+     "nombre": "Copla Liria",
+     "url": "https://www.booking.com/hotel/es/copla-liria.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 4454.19,
+     "lat": 40.427282,
+     "lon": -3.713429,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 9,
+     "opiniones": 755
+    },
+    {
+     "id": "420626",
+     "nombre": "Hostal Victoria II",
+     "url": "https://www.booking.com/hotel/es/hostal-victoria-ii.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 3036.61,
+     "lat": 40.416507,
+     "lon": -3.703193,
+     "tipo": "Hostal o pensión",
+     "distrito": "Centro de Madrid",
+     "nota": 8,
+     "opiniones": 5448
+    },
+    {
+     "id": "1000781",
+     "nombre": "Fuencarral Apartments",
+     "url": "https://www.booking.com/hotel/es/fuencarral-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 5105.75,
+     "lat": 40.42342,
+     "lon": -3.700595,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 8.2,
+     "opiniones": 3050
+    },
+    {
+     "id": "6152027",
+     "nombre": "Deslumbrante Apto Barrio de Las Letras by Batuecas",
+     "url": "https://www.booking.com/hotel/es/deslumbrante-apto-barrio-de-las-letras-c-prado.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 10486.55,
+     "lat": 40.414684,
+     "lon": -3.699113,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 9.4,
+     "opiniones": 36
+    },
+    {
+     "id": "15894912",
+     "nombre": "Cituspace Alcalá",
+     "url": "https://www.booking.com/hotel/es/cituspace-alcala.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 7350.58,
+     "lat": 40.423007,
+     "lon": -3.679351,
+     "tipo": "Apartamento",
+     "distrito": "Salamanca",
+     "nota": 9.5,
+     "opiniones": 41
+    },
+    {
+     "id": "1399132",
+     "nombre": "Palacio Conde Miranda",
+     "url": "https://www.booking.com/hotel/es/palacio-plaza-conde-miranda.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 6452.71,
+     "lat": 40.414757,
+     "lon": -3.709415,
+     "tipo": "Apartamento",
+     "distrito": "Centro de Madrid",
+     "nota": 9.2,
+     "opiniones": 2561
+    },
+    {
+     "id": "3606552",
+     "nombre": "MH Apartments Central Madrid",
+     "url": "https://www.booking.com/hotel/es/mh-apartments-central-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 8819.11,
+     "lat": 40.412706,
+     "lon": -3.704843,
+     "tipo": "Apartahotel",
+     "distrito": "Centro de Madrid",
+     "nota": 8.8,
+     "opiniones": 1000
+    },
+    {
+     "id": "4004467",
+     "nombre": "Beautiful Apartment next to Santiago Bernabeu by Batuecas",
+     "url": "https://www.booking.com/hotel/es/beautiful-apartment-next-to-santiago-bernabeu.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 5497.28,
+     "lat": 40.448849,
+     "lon": -3.688833,
+     "tipo": "Apartamento",
+     "distrito": "Chamartín",
+     "nota": 9,
+     "opiniones": 37
+    },
+    {
+     "id": "254959",
+     "nombre": "CH Bueno",
+     "url": "https://www.booking.com/hotel/es/bueno-madrid.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-25&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-5053460904b1f7e6",
+     "total_usd": 4169.8,
+     "lat": 40.42092,
+     "lon": -3.701237,
+     "tipo": "Hostal o pensión",
+     "distrito": "Centro de Madrid",
+     "nota": 9.2,
+     "opiniones": 2307
+    }
+   ]
+  },
+  {
+   "source": "expedia",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-25",
+   "ok": true,
+   "error": null,
+   "resultados": [
+    {
+     "id": "22733540",
+     "nombre": "Apartment in the city center, Lavapiés",
+     "url": "https://www.expedia.com/.h22733540.Hotel-Information?chkin=2027-06-01&chkout=2027-06-25&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=7baa3f6d-9a67-4d7e-81b3-a76e236ca434",
+     "total_usd": 1882,
+     "lat": 40.409558,
+     "lon": -3.700432,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    },
+    {
+     "id": "124963668",
+     "nombre": "Aluche City Suites",
+     "url": "https://www.expedia.com/.h124963668.Hotel-Information?chkin=2027-06-01&chkout=2027-06-25&rm1=a1:c15:c11&SEOCID=U.HOTEL.CLAUDEAI-MICROAPP&mcpRequestId=7baa3f6d-9a67-4d7e-81b3-a76e236ca434",
+     "total_usd": 2043,
+     "lat": 40.396252,
+     "lon": -3.757039,
+     "tipo": null,
+     "distrito": null,
+     "nota": null,
+     "opiniones": 0
+    }
+   ]
+  }
+ ],
+ "verificaciones": [
+  {
+   "id": "12208362",
+   "checkin": "2027-06-29",
+   "checkout": "2027-07-27",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 40,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2710.07,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234085_3_0_0"
+      },
+      {
+       "precio_total": 2433.53,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234085_2_0_0"
+      },
+      {
+       "precio_total": 3094.66,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234086_3_0_0"
+      },
+      {
+       "precio_total": 2986.62,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234085_4_0_0"
+      },
+      {
+       "precio_total": 3371.2,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234086_4_0_0"
+      },
+      {
+       "precio_total": 2818.11,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836201_394234086_2_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 20,
+     "ocupacion_max": 2,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 2577.75,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836202_394234085_2_0_0"
+      },
+      {
+       "precio_total": 2891.61,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-villa-de-vallecas.html?aid=8132308&checkin=2027-06-29&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9f51526007f74449&highlighted_blocks=1220836202_394234086_2_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "11479829",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-19",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Estudio",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3074.16,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-409bdf2d93ec4b0e&highlighted_blocks=1147982901_447723802_4_0_0"
+      },
+      {
+       "precio_total": 2769.52,
+       "moneda": "USD",
+       "cancelacion": "special_conditions",
+       "url": "https://www.booking.com/hotel/es/puerta-de-hierro-apartments.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-409bdf2d93ec4b0e&highlighted_blocks=1147982901_396581246_4_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "17143994",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-19",
+   "dormitorios": 2,
+   "evidencia": "El apartamento tiene 2 dormitorios, 1 baño, ropa de cama, toallas, TV de pantalla plana, cocina totalmente equipada y terraza con vistas a la ciudad.",
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento de 2 dormitorios",
+     "m2": 45,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 2997.08,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/a-2-min-del-parque-madrid-rio-terraza-relax-y-vistas.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-9c35db13611e5b1f&highlighted_blocks=1714399401_443166963_4_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "11880200",
+   "checkin": "2027-06-01",
+   "checkout": "2027-06-19",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento Dúplex",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3567.66,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391147651_3_0_0"
+      },
+      {
+       "precio_total": 4057.25,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391199876_4_0_0"
+      },
+      {
+       "precio_total": 3389.88,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3745.44,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391147651_4_0_0"
+      },
+      {
+       "precio_total": 3701.69,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391199876_2_0_0"
+      },
+      {
+       "precio_total": 3879.47,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020003_391199876_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 25,
+     "ocupacion_max": 3,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3109.54,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020004_391199876_2_0_0"
+      },
+      {
+       "precio_total": 2848.64,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020004_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3287.32,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020004_391199876_3_0_0"
+      },
+      {
+       "precio_total": 3026.42,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020004_391147651_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3785.34,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391199876_4_0_0"
+      },
+      {
+       "precio_total": 3429.78,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391199876_2_0_0"
+      },
+      {
+       "precio_total": 3141.36,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3496.92,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391147651_4_0_0"
+      },
+      {
+       "precio_total": 3607.56,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391199876_3_0_0"
+      },
+      {
+       "precio_total": 3319.14,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020007_391147651_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 25,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3067.7,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391147651_3_0_0"
+      },
+      {
+       "precio_total": 3154.65,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391199876_2_0_0"
+      },
+      {
+       "precio_total": 3510.21,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391199876_4_0_0"
+      },
+      {
+       "precio_total": 2889.93,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3245.48,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391147651_4_0_0"
+      },
+      {
+       "precio_total": 3332.43,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020006_391199876_3_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 30,
+     "ocupacion_max": 4,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3768.02,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391147651_4_0_0"
+      },
+      {
+       "precio_total": 3590.24,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391147651_3_0_0"
+      },
+      {
+       "precio_total": 3904.19,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391199876_3_0_0"
+      },
+      {
+       "precio_total": 3412.46,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3726.41,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391199876_2_0_0"
+      },
+      {
+       "precio_total": 4081.97,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020001_391199876_4_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Estudio Dúplex",
+     "m2": 20,
+     "ocupacion_max": 3,
+     "sofa_cama": false,
+     "tarifas": [
+      {
+       "precio_total": 3381.02,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020002_391147651_2_0_0"
+      },
+      {
+       "precio_total": 3964.13,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020002_391199876_2_0_0"
+      },
+      {
+       "precio_total": 3558.8,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020002_391147651_3_0_0"
+      },
+      {
+       "precio_total": 4230.8,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/charming-madrid-villaverde.html?aid=8132308&checkin=2027-06-01&checkout=2027-06-19&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-a5e32e6fc531e17e&highlighted_blocks=1188020002_391199876_3_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "4004467",
+   "checkin": "2027-07-06",
+   "checkout": "2027-07-27",
+   "dormitorios": 1,
+   "evidencia": "Este apartamento con aire acondicionado consta de 1 dormitorio, una sala de estar, una cocina totalmente equipada con nevera y cafetera, y 1 baño con ducha y artículos de aseo gratuitos.",
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento",
+     "m2": 50,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 2574.2,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/beautiful-apartment-next-to-santiago-bernabeu.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-8a5cd448ac81a438&highlighted_blocks=400446702_288571623_2_0_0"
+      },
+      {
+       "precio_total": 3058.16,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/beautiful-apartment-next-to-santiago-bernabeu.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-8a5cd448ac81a438&highlighted_blocks=400446702_288571623_4_0_0"
+      },
+      {
+       "precio_total": 2816.18,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/beautiful-apartment-next-to-santiago-bernabeu.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-8a5cd448ac81a438&highlighted_blocks=400446702_288571623_3_0_0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2875963",
+   "checkin": "2027-07-06",
+   "checkout": "2027-07-27",
+   "dormitorios": null,
+   "evidencia": null,
+   "licencia": null,
+   "habitaciones": [
+    {
+     "nombre": "Apartamento Ático",
+     "m2": 80,
+     "ocupacion_max": 6,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4601.07,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596304_381807211_6_0_0"
+      },
+      {
+       "precio_total": 4460.24,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596304_108340590_6_0_0"
+      },
+      {
+       "precio_total": 4694.93,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596304_371282707_6_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 2 dormitorios",
+     "m2": 80,
+     "ocupacion_max": 6,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4061.91,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596301_371282707_6_0_0"
+      },
+      {
+       "precio_total": 3858.86,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596301_108340590_6_0_0"
+      },
+      {
+       "precio_total": 3980.61,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596301_381807211_6_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 3 dormitorios",
+     "m2": 100,
+     "ocupacion_max": 8,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4994.76,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596305_371282707_8_0_0"
+      },
+      {
+       "precio_total": 4894.86,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596305_381807211_0_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 1 dormitorio",
+     "m2": 70,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3121.38,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596302_108340590_4_0_0"
+      },
+      {
+       "precio_total": 3219.97,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596302_381807211_4_0_0"
+      },
+      {
+       "precio_total": 3285.64,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596302_371282707_4_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento de 3 dormitorios",
+     "m2": 100,
+     "ocupacion_max": 8,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 4994.76,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596303_371282707_8_0_0"
+      },
+      {
+       "precio_total": 4744.99,
+       "moneda": "USD",
+       "cancelacion": "non_refundable",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596303_108340590_8_0_0"
+      },
+      {
+       "precio_total": 4894.86,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596303_381807211_8_0_0"
+      }
+     ]
+    },
+    {
+     "nombre": "Apartamento con terraza ",
+     "m2": 70,
+     "ocupacion_max": 4,
+     "sofa_cama": true,
+     "tarifas": [
+      {
+       "precio_total": 3285.64,
+       "moneda": "USD",
+       "cancelacion": "free_cancellation",
+       "url": "https://www.booking.com/hotel/es/apartamentos-villablino-arturo-soria.html?aid=8132308&checkin=2027-07-06&checkout=2027-07-27&no_rooms=1&group_adults=1&group_children=2&age=15&age=11&selected_currency=USD&label=mcp_rid-af229450a682ed37&highlighted_blocks=287596306_371282707_4_0_0"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
